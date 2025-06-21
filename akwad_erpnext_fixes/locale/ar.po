@@ -3090,9 +3090,6 @@ msgstr "الرصيد بعملة الحساب"
 msgid "Balance In Base Currency"
 msgstr "الرصيد بالعملة الأساسية"
 
-msgid "Balance In Base Currency"
-msgstr "الرصيد بالعملة الأساسية"
-
 msgid "Balance Qty"
 msgstr "كمية الرصيد"
 
@@ -13277,7 +13274,6 @@ msgstr "يجب أن يكون عنوان URL لجوجل شيتس متاحاً ل�
 msgid "Mute Email"
 msgstr "كتم البريد الإلكتروني"
 
-msgid "No"
 msgid "N/A"
 msgstr "غير متوفر"
 
@@ -13285,7 +13281,6 @@ msgid "Name"
 msgstr "الاسم"
 
 msgid "Name and Employee ID"
-msgid "Name and ID"
 msgstr "الاسم ومعرف الموظف"
 
 msgid "Name of Beneficiary"
@@ -13322,7 +13317,6 @@ msgid "Nanohertz"
 msgstr "نانوهرتز"
 
 msgid "Nanometer"
-msgid "نانومتر"
 msgstr "نانومتر"
 
 msgid "Nanosecond"
@@ -13784,9 +13778,6 @@ msgstr "لم يتم إنشاء إدخالات دفتر الأستودار للم
 msgid "No stock transactions can be created or modified before this date."
 msgstr "لا يمكن إنشاء أو تعديل معاملات المخزون قبل هذا التاريخ."
 
-msgid "No values"
-msgid "No values"
-
 msgid "No {0} Accounts found for this company."
 msgstr "لم يتم العثور على حسابات {0} لهذه الشركة."
 
@@ -13794,7 +13785,7 @@ msgid "No {0} found for Inter Company Transactions."
 msgstr "لم يتم العثور على {0} للمعاملات بين الشركات."
 
 msgid "No."
-msgid "رقم"
+msgstr "رقم"
 
 msgid "No. of Employees"
 msgstr "عدد الموظفين"
@@ -13811,10 +13802,6 @@ msgstr "غير قابل للاستهلاك"
 msgid "Non Profit"
 msgstr "غير ربحي"
 
-msgid "Non stock items"
-msgid "stock items"
-
-msg "غير المخزنة"
 msgid "Non-Zeros"
 msgstr "غير الصفرية"
 
@@ -13870,7 +13857,7 @@ msgid "Not allowed to update stock transactions older than {0}"
 msgstr "غير مسموح بتحديث معاملات المخزون الأقدم من {0}"
 
 msgid "Not authorized since {0} exceeds limits"
-msgid "غير مخول لأن {0} يتجاوز الحدود"
+msgstr "غير مخول لأن {0} يتجاوز الحدود"
 
 msgid "Not authorized to edit frozen Account {0}"
 msgstr "غير مخول لتعديل الحساب المجمد {0}"
@@ -13894,7 +13881,7 @@ msgid "Note: Due Date exceeds allowed {0} credit days by {1} day(s)"
 msgstr "ملاحظة: تاريخ الاستحقاق يتجاوز {0} أيام الائتمان المسموح بها بـ {1} يوم(أيام)"
 
 msgid "Note: Email ميل not be sent to disabled users"
-msgid "ملاحظة: لن يتم إرسال البريد الإلكتروني إلى المستخدمين المعطلين"
+msgstr "ملاحظة: لن يتم إرسال البريد الإلكتروني إلى المستخدمين المعطلين"
 
 msgid "Note: If you want to use the finished good {0} as a raw material, then enable the 'Do Not Explode' checkbox in the Items table against the same raw material."
 msgstr "ملاحظة: إذا كنت ترغب في استخدام المنتج النهائي {0} كمادة خام، فقم بتمكين مربع الاختيار 'عدم التفصيل' في جدول الأصناف مقابل نفس المادة الخام."
@@ -13914,23 +13901,23 @@ msgstr "ملاحظة: لدمج الأصناف، أنشئ تسوية مخزون �
 msgid "Note: {0}"
 msgstr "ملاحظة: {0}"
 
-msg "Notes"
-msgid "ملاحظات"
+msgid "Notes"
+msgstr "ملاحظات"
 
 msgid "Notes HTML"
-msgid "ملاحظات HTML"
+msgstr "ملاحظات HTML"
 
 msgid "Notes: "
-msgid "ملاحظات: "
+msgstr "ملاحظات: "
 
-msg "Nothing is included in gross"
-msgid "لا شيء مشمول في الإجمالي"
+msgid "Nothing is included in gross"
+msgstr "لا شيء مشمول في الإجمالي"
 
 msgid "Nothing more to show."
 msgstr "لا يوجد المزيد لعرض."
 
 msgid "Notice (days)"
-msgid "إشعار (أيام)"
+msgstr "إشعار (أيام)"
 
 msgid "Notification"
 msgstr "إشعار"
@@ -13945,10 +13932,10 @@ msgid "Notify Employee"
 msgstr "إعلام الموظف"
 
 msgid "Notify Other"
-msgid "إعلام آخر"
+msgstr "إعلام آخر"
 
 msgid "Notify Reposting User to Role"
-msgid "إعلام المستخدم بإعادة الترحيل للدور"
+msgstr "إعلام المستخدم بإعادة الترحيل للدور"
 
 msgid "Notify Supplier"
 msgstr "إعلام المورد"
@@ -13969,10 +13956,10 @@ msgid "Number of Days"
 msgstr "عدد الأيام"
 
 msgid "Number of Interaction"
-"تعداد التفاعلات"
+msgstr "تعداد التفاعلات"
 
 msgid "Number of Order"
-msgid "عدد الطلبات"
+msgstr "عدد الطلبات"
 
 msgid "Number of days after invoice date has elapsed before canceling subscription or marking subscription as unpaid"
 msgstr "عدد الأيام بعد انقضاء تاريخ الفاتور قبل إلغاء الاشتراك أو وضع علامة الاشتراك كغير مدفوع"
