@@ -13,8 +13,6 @@ def after_install():
 def insert_property_setters():
     property_setters = get_property_setters()
     for ps in property_setters:
-        if not frappe.db.exists("DocType", ps["doc_type"]):
-            continue
         if not frappe.db.exists("Property Setter", ps["name"]):
             try:
                 frappe.get_doc(ps).insert(ignore_permissions=True)
