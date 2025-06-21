@@ -9907,7 +9907,7 @@ msgid "Idle"
 msgstr "خامل"
 
 msgid "If \"Months\" is selected, a fixed amount will be booked as deferred revenue or expense for each month irrespective of the number of days in a month. It will be prorated if deferred revenue or expense is not booked for an entire month"
-msgstr "إذا تم اختيار "أشهر"، سيتم تسجيل مبلغ ثابت كإيراد أو مصروف مؤجل لكل شهر بغض النظر عن عدد الأيام في الشهر. سيتم توزيعه نسبيًا إذا لم يتم تسجيل الإيراد أو المصروف المؤجل لشهر كامل"
+msgstr "إذا تم اختيار \"أشهر\"، سيتم تسجيل مبلغ ثابت كإيراد أو مصروف مؤجل لكل شهر بغض النظر عن عدد الأيام في الشهر. سيتم توزيعه نسبيًا إذا لم يتم تسجيل الإيراد أو المصروف المؤجل لشهر كامل"
 
 msgid "If Auto Opt In is checked, then the customers will be automatically linked with the concerned Loyalty Program (on save)"
 msgstr "إذا تم تحديد الاشتراك التلقائي، فسيتم ربط العملاء تلقائيًا ببرنامج الولاء المعني (عند الحفظ)"
@@ -10003,7 +10003,7 @@ msgid "If not, you can Cancel / Submit this entry"
 msgstr "إذا لم يكن كذلك، يمكنك إلغاء / تقديم هذا الإدخال"
 
 msgid "If rate is zero then item will be treated as \"Free Item\""
-msgstr恒 "إذا كان المعدل صفرًا"، فسيتم التعامل مع الصنف كـ "صنف مجاني""
+msgstr "إذا كان المعدل صفرًا، فسيتم التعامل مع الصنف كـ \"صنف مجاني\""
 
 msgid "If subcontracted to a vendor"
 msgstr "إذا تم التعهيد إلى مورد"
@@ -10050,7 +10050,7 @@ msgstr "إذا تم تهيئة هذا الخيار بـ 'نعم'، سيمنعك 
 msgid "If this option is configured 'Yes', ERPNext will prevent you from creating a Purchase Invoice without creating a Purchase Receipt first. This configuration can be overridden for a particular supplier by enabling the enable the 'Allow Purchase Invoice Creation Without Purchase Receipt' checkbox in the Supplier master."
 msgstr "إذا تم تهيئة هذا الخيار بـ 'نعم'، سيمنعك ERPNext من إنشاء فاتورة شراء بدون إنشاء إيصال شراء أولاً. يمكن تجاوز هذه التهيئة لمورد معين بتمكين مربع الاختيار 'السماح بإنشاء فاتورة شراء بدون إيصال شراء' في سجل المورد."
 
-msgid野生動物 "If ticked, multiple materials can be used for a single Work Order. This is useful if one or more time consuming products are being manufactured."
+msgid "If ticked, multiple materials can be used for a single Work Order. This is useful if one or more time consuming products are being manufactured."
 msgstr "إذا تم تحديده، يمكن استخدام مواد متعددة لأمر عمل واحد. هذا مفيد إذا كان يتم تصنيع منتج واحد أو أكثر يستهلك وقتًا."
 
 msgid "If ticked, the BOM cost will be automatically updated based on Valuation Rate / Price List Rate / last purchase rate of raw materials."
@@ -10063,7 +10063,7 @@ msgid "If yes, then this warehouse will be used to store rejected materials"
 msgstr "إذا نعم، فسيتم استخدام هذا المستودع لتخزين المواد المرفوضة"
 
 msgid "If you are maintaining stock of this Item in your Inventory, ERPNext will make a stock ledger entry for each transaction of this item."
-msgstrض "إذا كنت تحتفظ بمخزون هذا الصنف في مخزونك، سيقوم ERPNext بإنشاء إدخال دفتر أستاذ المخزون لكل معاملة لهذا الصنف."
+msgstr "إذا كنت تحتفظ بمخزون هذا الصنف في مخزونك، سيقوم ERPNext بإنشاء إدخال دفتر أستاذ المخزون لكل معاملة لهذا الصنف."
 
 msgid "If you need to reconcile particular transactions against each other, then please select accordingly."
 msgstr "إذا كنت بحاجة إلى تسوية معاملات معينة مقابل بعضها، فيرجى الاختيار وفقًا لذلك."
@@ -21778,10 +21778,10 @@ msgid "Standard rated supplies in {0}"
 msgstr "الإمدادات ذات التصنيف القياسي في {0}"
 
 msgid "Standard tax template that can be applied to all Purchase Transactions. This template can contain a list of tax heads and also other expense heads like \"Shipping\", \"Insurance\", \"Handling\", etc."
-msgstr "قالب الضرائب القياسي الذي يمكن تطبيقه على جميع معاملات الشراء. يمكن أن يحتوي هذا القالب على قائمة برؤوس الضرائب وأيضًا رؤوس مصروفات أخرى مثل "الشحن"، "التأمين"، "المناولة"، إلخ."
+msgstr "قالب الضرائب القياسي الذي يمكن تطبيقه على جميع معاملات الشراء. يمكن أن يحتوي هذا القالب على قائمة برؤوس الضرائب وأيضًا رؤوس مصروفات أخرى مثل \"الشحن\"، \"التأمين\"، \"المناولة\"، إلخ."
 
 msgid "Standard tax template that can be applied to all Sales Transactions. This template can contain a list of tax heads and also other expense/income heads like \"Shipping\", \"Insurance\", \"Handling\" etc."
-msgstr "قالب الضرائب القياسي الذي يمكن تطبيقه على جميع معاملات البيع. يمكن أن يحتوي هذا القالب على قائمة برؤوس الضرائب وأيضًا رؤوس مصروفات/دخل أخرى مثل "الشحن"، "التأمين"، "المناولة"، إلخ."
+msgstr "قالب الضرائب القياسي الذي يمكن تطبيقه على جميع معاملات البيع. يمكن أن يحتوي هذا القالب على قائمة برؤوس الضرائب وأيضًا رؤوس مصروفات/دخل أخرى مثل \"الشحن\"، \"التأمين\"، \"المناولة\"، إلخ."
 
 msgid "Standing Name"
 msgstr "الاسم الدائم"
@@ -22735,6 +22735,7 @@ msgid "Target Asset {0}: cannot be submitted"
 msgstr "لا يمكن تقديم الأصل المستهدف {0}:"
 
 msgid "Target Asset {0}: cannot be {1}"
+msgstr "الأصل المستهدف {0}: لا يمكن أن يكون {1}"
 
 msgid "Target Asset {0} does not belong to company {1}"
 msgstr "الأصل المستهدف لا ينتمي إلى الشركة {0} {1}"
@@ -23430,7 +23431,7 @@ msgid "There can only be 1 Account per Company in {0} {1}"
 msgstr "يمكن أن يكون هناك حساب واحد فقط لكل شركة في {0} {1}"
 
 msgid "There can only be one Shipping Rule Condition with 0 or blank value for \"To Value\""
-msgstr "يمكن أن يكون هناك شرط قاعدة شحن واحد فقط بقيمة 0 أو فارغة لـ "إلى القيمة""
+msgstr "يمكن أن يكون هناك شرط قاعدة شحن واحد فقط بقيمة 0 أو فارغة لـ \"إلى القيمة\""
 
 msgid "There is already a valid Lower Deduction Certificate {0} for Supplier {1} against category {2} for this time period."
 msgstr "يوجد بالفعل شهادة خصم أقل صالحة {0} للمورد {1} مقابل الفئة {2} لهذه الفترة الزمنية."
@@ -23622,7 +23623,7 @@ msgid "This value shall be used when no matching Common Code for a record is fou
 msgstr "ستُستخدم هذه القيمة عندما لا يتم العثور على كود مشترك مطابق لسجل."
 
 msgid "This will be appended to the Item Code of the variant. For example, if your abbreviation is \"SM\", and the item code is \"T-SHIRT\", the item code of the variant will be \"T-SHIRT-SM\""
-msgstr "سيتم إضافته إلى رمز الصنف للمتغير. على سبيل المثال، إذا كان الاختصار الخاص بك هو "SM"، ورمز الصنف هو "T-SHIRT"، فسيكون رمز الصنف للمتغير "T-SHIRT-SM""
+msgstr "سيتم إضافته إلى رمز الصنف للمتغير. على سبيل المثال، إذا كان الاختصار الخاص بك هو \"SM\"، ورمز الصنف هو \"T-SHIRT\"، فسيكون رمز الصنف للمتغير \"T-SHIRT-SM\""
 
 msgid "This will restrict user access to other employee records"
 msgstr "سيقيد هذا وصول المستخدم إلى سجلات الموظفين الآخرين"
@@ -23850,10 +23851,10 @@ msgid "To add subcontracted Item's raw materials if include exploded items is di
 msgstr "لإضافة المواد الخام للصنف المتعهد إذا تم تعطيل تضمين الأصناف التفصيلية."
 
 msgid "To allow over billing, update \"Over Billing Allowance\" in Accounts Settings or the Item."
-msgstr "للسماح بالفوترة الزائدة، قم بتحديث "بدل الفوترة الزائدة" في إعدادات الحسابات أو الصنف."
+msgstr "للسماح بالفوترة الزائدة، قم بتحديث \"بدل الفوترة الزائدة\" في إعدادات الحسابات أو الصنف."
 
 msgid "To allow over receipt / delivery, update \"Over Receipt/Delivery Allowance\" in Stock Settings or the Item."
-msgstr "للسماح بالاستلام/التسليم الزائد، قم بتحديث "بدل الاستلام/التسليم الزائد" في إعدادات المخزون أو الصنف."
+msgstr "للسماح بالاستلام/التسليم الزائد، قم بتحديث \"بدل الاستلام/التسليم الزائد\" في إعدادات المخزون أو الصنف."
 
 msgid "To apply condition on parent field use parent.field_name and to apply condition on child table use doc.field_name. Here field_name could be based on the actual column name of the respective field."
 msgstr "لتطبيق شرط على الحقل الأصلي، استخدم parent.field_name ولتطبيق شرط على جدول فرعي، استخدم doc.field_name. هنا يمكن أن يعتمد field_name على اسم العمود الفعلي للحقل المعني."
@@ -26166,7 +26167,7 @@ msgid "doctype"
 msgstr "نوع المستند"
 
 msgid "e.g. \"Summer Holiday 2019 Offer 20\""
-msgstr "على سبيل المثال، "عرض عطلة الصيف 2019 20""
+msgstr "على سبيل المثال، \"عرض عطلة الصيف 2019 20\""
 
 msgid "example: Next Day Shipping"
 msgstr "مثال: الشحن في اليوم التالي"
