@@ -88,6 +88,7 @@ def get_custom_fields():
 		"Print Style": [
             {
 				"fieldname": "custom_color",
+				"module": "Akwad ERPNext Fixes",
 				"fieldtype": "Color",
 				"label": _("Color"),
 				"insert_after": "standard"
