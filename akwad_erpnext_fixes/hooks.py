@@ -83,7 +83,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "akwad_erpnext_fixes.install.before_install"
-after_install = "akwad_frappe_fixes.setup.after_install"
+after_install = "akwad_erpnext_fixes.setup.after_install"
 
 # Uninstallation
 # ------------
