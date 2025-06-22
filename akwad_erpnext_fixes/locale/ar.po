@@ -27144,3 +27144,6 @@ msgstr "{} {} مرتبط بالفعل بـ {} {}"
 
 msgid "{} {} is not affecting bank account {}"
 msgstr "{} {} لا يؤثر على الحساب البنكي {}"
+
+msgid "Company Switcher"
+msgstr "تبديل الشركات"
