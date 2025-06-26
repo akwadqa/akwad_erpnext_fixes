@@ -878,7 +878,7 @@ msgid "A template with tax category {0} already exists. Only one template is all
 msgstr "قالب مع فئة ضريبية {0} موجود بالفعل. يُسمح بقالب واحد فقط لكل فئة ضريبية"
 
 msgid "A third party distributor / dealer / commission agent / affiliate / reseller who sells the companies products for a commission."
-msgstr "موزع / تاجر / وكيل عمولة / شريك / بائع تجزئة من طرف ثالث يبيع منتجات الشركات مقابل عمولة."
+msgstr "موزع / تاجر / وكيل عمولة / شريك / بائع تجزئة من جهة ثالثة يبيع منتجات الشركات مقابل عمولة."
 
 msgid "A+"
 msgstr "أ+"
@@ -1049,10 +1049,10 @@ msgid "Account Value"
 msgstr "قيمة الحساب"
 
 msgid "Account balance already in Credit, you are not allowed to set 'Balance Must Be' as 'Debit'"
-msgstr "رصيد الحساب بالفعل في الائتمان، لا يُسمح لك بتعيين 'يجب أن يكون الرصيد' كـ'مدين'"
+msgstr "رصيد الحساب بالفعل في الدائن، لا يُسمح لك بتعيين 'يجب أن يكون الرصيد' كـ'مدين'"
 
 msgid "Account balance already in Debit, you are not allowed to set 'Balance Must Be' as 'Credit'"
-msgstr "رصيد الحساب بالفعل في الخصم، لا يُسمح لك بتعيين 'يجب أن يكون الرصيد' كـ'دائن'"
+msgstr "رصيد الحساب بالفعل في المدين، لا يُسمح لك بتعيين 'يجب أن يكون الرصيد' كـ'دائن'"
 
 msgid "Account for Change Amount"
 msgstr "حساب مبلغ التغيير"
@@ -1133,7 +1133,7 @@ msgid "Account {0}: You can not assign itself as parent account"
 msgstr "الحساب {0}: لا يمكنك تعيينه كحساب أصلي لنفسه"
 
 msgid "Account: <b>{0}</b> is capital Work in progress and can not be updated by Journal Entry"
-msgstr "الحساب: <b>{0}</b> هو عمل رأسمالي قيد التقدم ولا يمكن تحديثه بواسطة قيد يومية"
+msgstr "الحساب: <b>{0}</b> هو عمل رأسمالي تحت الإجراء ولا يمكن تحديثه بواسطة قيد يومية"
 
 msgid "Account: {0} can only be updated via Stock Transactions"
 msgstr "الحساب: {0} يمكن تحديثه فقط عبر معاملات المخزون"
@@ -1238,7 +1238,7 @@ msgid "Accounts Receivable / Payable Tuning"
 msgstr "تعديل الحسابات المستحقة القبض / الدفع"
 
 msgid "Accounts Receivable Credit Account"
-msgstr "حساب الائتمان المستحق القبض"
+msgstr "حساب الدائن المستحق القبض"
 
 msgid "Accounts Receivable Discounted Account"
 msgstr "حساب الخصم المستحق القبض"
@@ -1526,7 +1526,7 @@ msgid "Add Multiple Tasks"
 msgstr "إضافة مهام متعددة"
 
 msgid "Add Or Deduct"
-msgstr "إضافة أو خصم"
+msgstr "إضافة أو اقتطاع"
 
 msgid "Add Order Discount"
 msgstr "إضافة خصم الطلب"
@@ -1580,7 +1580,7 @@ msgid "Add items in the Item Locations table"
 msgstr "إضافة أصناف في جدول مواقع الأصناف"
 
 msgid "Add or Deduct"
-msgstr "إضافة أو خصم"
+msgstr "إضافة أو اقتطاع"
 
 msgid "Add the rest of your organization as your users. You can also add invite Customers to your portal by adding them from Contacts"
 msgstr "أضف بقية منظمتك كمستخدمين لك. يمكنك أيضًا دعوة العملاء إلى بوابتك عن طريق إضافتهم من جهات الاتصال"
@@ -2198,7 +2198,7 @@ msgid "Allow material consumptions without immediately manufacturing finished go
 msgstr "السماح باستهلاك المواد دون تصنيع البضائع النهائية مباشرة مقابل أمر العمل"
 
 msgid "Allow multi-currency invoices against single party account "
-msgstr "السماح بفواتير متعددة العملات مقابل حساب طرف واحد"
+msgstr "السماح بفواتير متعددة العملات مقابل حساب جهة واحد"
 
 msgid "Allow to Edit Stock UOM Qty for Purchase Documents"
 msgstr "السماح بتعديل كمية وحدة قياس المخزون للوثائق الشرائية"
@@ -2315,7 +2315,7 @@ msgid "Amount in Words"
 msgstr "المبلغ بالكلمات"
 
 msgid "Amount in party's bank account currency"
-msgstr "المبلغ بعملة الحساب البنكي للطرف"
+msgstr "المبلغ بعملة الحساب البنكي للجهة"
 
 msgid "Amount in transaction currency"
 msgstr "المبلغ بعملة المعاملة"
@@ -2594,7 +2594,7 @@ msgid "Approving User cannot be same as user the rule is Applicable To"
 msgstr "لا يمكن أن يكون المستخدم الموافق هو نفسه المستخدم الذي تنطبق عليه القاعدة"
 
 msgid "Approximately match the description/party name against parties"
-msgstr "مطابقة الوصف/اسم الطرف تقريبًا مع الأطراف"
+msgstr "مطابقة الوصف/اسم الجهة تقريبًا مع الأطراف"
 
 msgid "Are"
 msgstr "هل"
@@ -3149,7 +3149,7 @@ msgid "Auto close Opportunity Replied after the no. of days mentioned above"
 msgstr "إغلاق الفرصة التي تم الرد عليها تلقائيًا بعد عدد الأيام المذكورة أعلاه"
 
 msgid "Auto match and set the Party in Bank Transactions"
-msgstr "مطابقة وتعيين الطرف تلقائيًا في المعاملات البنكية"
+msgstr "مطابقة وتعيين الجهة تلقائيًا في المعاملات البنكية"
 
 msgid "Auto re-order"
 msgstr "إعادة الطلب التلقائي"
@@ -3215,7 +3215,7 @@ msgid "Available Qty at Target Warehouse"
 msgstr "الكمية المتوفرة في المستودع الهدف"
 
 msgid "Available Qty at WIP Warehouse"
-msgstr "الكمية المتوفرة في مستودع العمل قيد التقدم"
+msgstr "الكمية المتوفرة في مستودع العمل تحت الإجراء"
 
 msgid "Available Qty at Warehouse"
 msgstr "الكمية المتوفرة في المستودع"
@@ -3398,7 +3398,7 @@ msgid "BOM Update Tool Log with job status maintained"
 msgstr "سجل أداة تحديث قائمة المواد مع الحفاظ على حالة الوظيفة"
 
 msgid "BOM Updation already in progress. Please wait until {0} is complete."
-msgstr "تحديث قائمة المواد قيد التقدم بالفعل. يرجى الانتظار حتى اكتمال {0}."
+msgstr "تحديث قائمة المواد تحت الإجراء بالفعل. يرجى الانتظار حتى اكتمال {0}."
 
 msgid "BOM Updation is queued and may take a few minutes. Check {0} for progress."
 msgstr "تحديث قائمة المواد في قائمة الانتظار وقد يستغرق بضع دقائق. تحقق من {0} للتقدم."
@@ -3455,7 +3455,7 @@ msgid "Backdated Stock Entry"
 msgstr "إدخال مخزون بأثر رجعي"
 
 msgid "Backflush Materials From WIP Warehouse"
-msgstr "تدفق المواد من مستودع العمل قيد التقدم"
+msgstr "تدفق المواد من مستودع العمل تحت الإجراء"
 
 msgid "Backflush Raw Materials"
 msgstr "تدفق المواد الخام"
@@ -3464,7 +3464,7 @@ msgid "Backflush Raw Materials Based On"
 msgstr "تدفق المواد الخام بناءً على"
 
 msgid "Backflush Raw Materials From Work-in-Progress Warehouse"
-msgstr "تدفق المواد الخام من مستودع العمل قيد التقدم"
+msgstr "تدفق المواد الخام من مستودع العمل تحت الإجراء"
 
 msgid "Backflush Raw Materials of Subcontract Based On"
 msgstr "تدفق المواد الخام للتعاقد من الباطن بناءً على"
@@ -3845,7 +3845,7 @@ msgid "Beginning of the current subscription period"
 msgstr "بداية فترة الاشتراك الحالية"
 
 msgid "Below Subscription Plans are of different currency to the party default billing currency/Company currency: {0}"
-msgstr "خطط الاشتراك أدناه بعملة مختلفة عن عملة الفوترة الافتراضية للطرف/عملة الشركة: {0}"
+msgstr "خطط الاشتراك أدناه بعملة مختلفة عن عملة الفوترة الافتراضية للجهة/عملة الشركة: {0}"
 
 msgid "Bill Date"
 msgstr "تاريخ الفاتورة"
@@ -3941,7 +3941,7 @@ msgid "Billing Zipcode"
 msgstr "الرمز البريدي للفوترة"
 
 msgid "Billing currency must be equal to either default company's currency or party account currency"
-msgstr "يجب أن تكون عملة الفوترة مساوية إما لعملة الشركة الافتراضية أو عملة حساب الطرف"
+msgstr "يجب أن تكون عملة الفوترة مساوية إما لعملة الشركة الافتراضية أو عملة حساب الجهة"
 
 msgid "Bin"
 msgstr "صندوق"
@@ -4028,7 +4028,7 @@ msgid "Book Advance Payments as Liability option is chosen. Paid From account ch
 msgstr "تم اختيار خيار تسجيل الدفعات المقدمة كالتزام. تم تغيير الحساب المدفوع من {0} إلى {1}."
 
 msgid "Book Advance Payments in Separate Party Account"
-msgstr "تسجيل الدفعات المقدمة في حساب طرف منفصل"
+msgstr "تسجيل الدفعات المقدمة في حساب جهة منفصل"
 
 msgid "Book Appointment"
 msgstr "حجز موعد"
@@ -4754,7 +4754,7 @@ msgid "Categorize by Item"
 msgstr "التصنيف حسب الصنف"
 
 msgid "Categorize by Party"
-msgstr "التصنيف حسب الطرف"
+msgstr "التصنيف حسب الجهة"
 
 msgid "Categorize by Supplier"
 msgstr "التصنيف حسب المورد"
@@ -5432,7 +5432,7 @@ msgid "Consider Accounting Dimensions"
 msgstr "الأخذ في الاعتبار الأبعاد المحاسبية"
 
 msgid "Consider Entire Party Ledger Amount"
-msgstr "الأخذ في الاعتبار إجمالي مبلغ دفتر أستاذ الطرف"
+msgstr "الأخذ في الاعتبار إجمالي مبلغ دفتر أستاذ الجهة"
 
 msgid "Consider Minimum Order Qty"
 msgstr "الأخذ في الاعتبار الحد الأدنى لكمية الطلب"
@@ -5936,7 +5936,7 @@ msgid "Create Link"
 msgstr "إنشاء رابط"
 
 msgid "Create Missing Party"
-msgstr "إنشاء طرف مفقود"
+msgstr "إنشاء جهة مفقودة"
 
 msgid "Create Multi-level BOM"
 msgstr "إنشاء قائمة مواد متعددة المستويات"
@@ -6107,25 +6107,25 @@ msgid "Creation of <b><a href='/app/{0}'>{1}(s)</a></b> successful"
 msgstr "تم إنشاء <b><a href='/app/{0}'>{1}(s)</a></b> بنجاح"
 
 msgid "Credit"
-msgstr "ائتمان"
+msgstr "دائن"
 
 msgid "Credit (Transaction)"
-msgstr "ائتمان (معاملة)"
+msgstr "دائن (معاملة)"
 
 msgid "Credit ({0})"
-msgstr "ائتمان ({0})"
+msgstr "دائن ({0})"
 
 msgid "Credit Account"
-msgstr "حساب الائتمان"
+msgstr "حساب الدائن"
 
 msgid "Credit Amount"
-msgstr "مبلغ الائتمان"
+msgstr "مبلغ الدائن"
 
 msgid "Credit Amount in Account Currency"
-msgstr "مبلغ الائتمان بعملة الحساب"
+msgstr "مبلغ الدائن بعملة الحساب"
 
 msgid "Credit Amount in Transaction Currency"
-msgstr "مبلغ الائتمان بعملة المعاملة"
+msgstr "مبلغ الدائن بعملة المعاملة"
 
 msgid "Credit Balance"
 msgstr "رصيد الائتمان"
@@ -6170,16 +6170,16 @@ msgid "Credit Note Issued"
 msgstr "تم إصدار إشعار ائتماني"
 
 msgid "Credit Note will update it's own outstanding amount, even if 'Return Against' is specified."
-msgstr "سيقوم إشعار الائتمان بتحديث المبلغ المستحق الخاص به، حتى لو تم تحديد 'الإرجاع مقابل'."
+msgstr "سيقوم إشعار الدائن بتحديث المبلغ المستحق الخاص به، حتى لو تم تحديد 'الإرجاع مقابل'."
 
 msgid "Credit Note {0} has been created automatically"
 msgstr "تم إنشاء إشعار ائتماني {0} تلقائيًا"
 
 msgid "Credit To"
-msgstr "الائتمان إلى"
+msgstr "الدائن إلى"
 
 msgid "Credit in Company Currency"
-msgstr "الائتمان بعملة الشركة"
+msgstr "الدائن بعملة الشركة"
 
 msgid "Credit limit has been crossed for customer {0} ({1}/{2})"
 msgstr "تم تجاوز حد الائتمان للعميل {0} ({1}/{2})"
@@ -6779,7 +6779,7 @@ msgid "Declare Lost"
 msgstr "إعلان الخسارة"
 
 msgid "Deduct"
-msgstr "خصم"
+msgstr "اقتطاع"
 
 msgid "Deductee Details"
 msgstr "تفاصيل المقتطع"
@@ -7013,7 +7013,7 @@ msgid "Default Warehouses for Production"
 msgstr "المستودعات الافتراضية للإنتاج"
 
 msgid "Default Work In Progress Warehouse"
-msgstr "مستودع العمل قيد التقدم الافتراضي"
+msgstr "مستودع العمل تحت الإجراء الافتراضي"
 
 msgid "Default Workstation"
 msgstr "محطة العمل الافتراضية"
@@ -7127,7 +7127,7 @@ msgid "Deleting {0} and all associated Common Code documents..."
 msgstr "جارٍ حذف {0} وجميع المستندات ذات الرمز المشترك المرتبطة..."
 
 msgid "Deletion in Progress!"
-msgstr "الحذف قيد التقدم!"
+msgstr "الحذف تحت الإجراء!"
 
 msgid "Deletion is not permitted for country {0}"
 msgstr "الحذف غير مسموح للبلد {0}"
@@ -8219,13 +8219,13 @@ msgid "Enable Auto Re-Order"
 msgstr "تمكين إعادة الطلب التلقائي"
 
 msgid "Enable Automatic Party Matching"
-msgstr "تمكين مطابقة الطرف تلقائيًا"
+msgstr "تمكين مطابقة الجهة تلقائيًا"
 
 msgid "Enable Capital Work in Progress Accounting"
 msgstr "تمكين محاسبة الأعمال الرأسمالية قيد التنفيذ"
 
 msgid "Enable Common Party Accounting"
-msgstr "تمكين محاسبة الطرف المشترك"
+msgstr "تمكين محاسبة الجهة المشتركة"
 
 msgid "Enable Cut-Off Date on Bulk Delivery Note Creation"
 msgstr "تمكين تاريخ القطع عند إنشاء ملاحظات التسليم الجماعية"
@@ -8291,7 +8291,7 @@ msgid "Enabling this option will allow you to record - <br><br> 1. Advances Rece
 msgstr "تمكين هذا الخيار سيسمح لك بتسجيل - <br><br> 1. السلف المستلمة في <b>حساب المسؤولية</b> بدلاً من <b>حساب الأصول</b><br><br>2. السلف المدفوعة في <b>حساب الأصول</b> بدلاً من <b>حساب المسؤولية</b>"
 
 msgid "Enabling this will allow creation of multi-currency invoices against single party account in company currency"
-msgstr "تمكين هذا سيسمح بإنشاء فواتير متعددة العملات مقابل حساب طرف واحد بعملة الشركة"
+msgstr "تمكين هذا سيسمح بإنشاء فواتير متعددة العملات مقابل حساب جهة واحد بعملة الشركة"
 
 msgid "Enabling this will change the way how cancelled transactions are handled."
 msgstr "تمكين هذا سيغير طريقة التعامل مع المعاملات الملغاة."
@@ -8465,7 +8465,7 @@ msgid "Error evaluating the criteria formula"
 msgstr "خطأ في تقييم صيغة المعايير"
 
 msgid "Error in party matching for Bank Transaction {0}"
-msgstr "خطأ في مطابقة الطرف للمعاملة البنكية {0}"
+msgstr "خطأ في مطابقة الجهة للمعاملة البنكية {0}"
 
 msgid "Error while posting depreciation entries"
 msgstr "خطأ أثناء ترحيل إدخالات الاستهلاك"
@@ -9989,7 +9989,7 @@ msgid "Group by Material Request"
 msgstr "التجميع حسب طلب المواد"
 
 msgid "Group by Party"
-msgstr "التجميع حسب الطرف"
+msgstr "التجميع حسب الجهة"
 
 msgid "Group by Purchase Order"
 msgstr "التجميع حسب أمر الشراء"
@@ -10514,7 +10514,7 @@ msgid "Ignore Pricing Rule is enabled. Cannot apply coupon code."
 msgstr "تم تمكين تجاهل قاعدة التسعير. لا يمكن تطبيق كود الخصم."
 
 msgid "Ignore System Generated Credit / Debit Notes"
-msgstr "تجاهل إشعارات الائتمان / المدين المولدة من النظام"
+msgstr "تجاهل إشعارات الدائن / المدين المولدة من النظام"
 
 msgid "Ignore User Time Overlap"
 msgstr "تجاهل تداخل وقت المستخدم"
@@ -10616,7 +10616,7 @@ msgid "In Minutes"
 msgstr "بالدقائق"
 
 msgid "In Party Currency"
-msgstr "بعملة الطرف"
+msgstr "بعملة الجهة"
 
 msgid "In Percentage"
 msgstr "بالنسبة المئوية"
@@ -10628,7 +10628,7 @@ msgid "In Production"
 msgstr "في الإنتاج"
 
 msgid "In Progress"
-msgstr "قيد التقدم"
+msgstr "تحت الإجراء"
 
 msgid "In Qty"
 msgstr "في الكمية"
@@ -11867,7 +11867,7 @@ msgid "Item valuation rate is recalculated considering landed cost voucher amoun
 msgstr "تمت إعادة حساب معدل تقييم الصنف مع الأخذ في الاعتبار مبلغ قسيمة تكلفة الواردات."
 
 msgid "Item valuation reposting in progress. Report might show incorrect item valuation."
-msgstr "إعادة ترحيل تقييم الصنف قيد التقدم. قد يظهر التقرير تقييمًا غير صحيح للصنف."
+msgstr "إعادة ترحيل تقييم الصنف تحت الإجراء. قد يظهر التقرير تقييمًا غير صحيح للصنف."
 
 msgid "Item variant {0} exists with same attributes"
 msgstr "متغير الصنف {0} موجود بنفس السمات"
@@ -12023,7 +12023,7 @@ msgid "Items {0} do not exist in the Item master."
 msgstr "الأصناف {0} غير موجودة في سجل الأصناف."
 
 msgid "Itemwise Discount"
-msgstr "خصم حسب الأصناف"
+msgstr "خصم على مستوى الاصناف"
 
 msgid "Itemwise Recommended Reorder Level"
 msgstr "مستوى إعادة الطلب الموصى به حسب الأصناف"
@@ -12668,7 +12668,7 @@ msgid "Low"
 msgstr "منخفض"
 
 msgid "Lower Deduction Certificate"
-msgstr "شهادة خصم أقل"
+msgstr "شهادة إقتطاع أقل"
 
 msgid "Lower Income"
 msgstr "دخل أقل"
@@ -13124,7 +13124,7 @@ msgid "Material Requests for which Supplier Quotations are not created"
 msgstr "طلبات المواد التي لم يتم إنشاء عروض أسعار الموردين لها"
 
 msgid "Material Returned from WIP"
-msgstr "المواد المعادة من العمل قيد التقدم"
+msgstr "المواد المعادة من العمل تحت الإجراء"
 
 msgid "Material Transfer"
 msgstr "نقل المواد"
@@ -13154,7 +13154,7 @@ msgid "Materials are already received against the {0} {1}"
 msgstr "تم استلام المواد بالفعل مقابل {0} {1}"
 
 msgid "Materials needs to be transferred to the work in progress warehouse for the job card {0}"
-msgstr "يجب نقل المواد إلى مستودع العمل قيد التقدم لبطاقة العمل {0}"
+msgstr "يجب نقل المواد إلى مستودع العمل تحت الإجراء لبطاقة العمل {0}"
 
 msgid "Max Amount"
 msgstr "الحد الأقصى للمبلغ"
@@ -13990,7 +13990,7 @@ msgid "No Notes"
 msgstr "لا توجد ملاحظات"
 
 msgid "No Outstanding Invoices found for this party"
-msgstr "لم يتم العثور على فواتير مستحقة لهذا الطرف"
+msgstr "لم يتم العثور على فواتير مستحقة لهذا الجهة"
 
 msgid "No POS Profile found. Please create a New POS Profile first"
 msgstr "لم يتم العثور على ملف تعريف نقطة بيع. يرجى إنشاء ملف تعريف نقطة بيع جديد أولاً"
@@ -14029,10 +14029,10 @@ msgid "No Terms"
 msgstr "لا توجد شروط"
 
 msgid "No Unreconciled Invoices and Payments found for this party and account"
-msgstr "لم يتم العثور على فواتير ومدفوعات غير متسوية لهذا الطرف والحساب"
+msgstr "لم يتم العثور على فواتير ومدفوعات غير متسوية لهذه الجهة والحساب"
 
 msgid "No Unreconciled Payments found for this party"
-msgstr "لم يتم العثور على مدفوعات غير متسوية لهذا الطرف"
+msgstr "لم يتم العثور على مدفوعات غير متسوية لهذه الجهة"
 
 msgid "No Work Orders were created"
 msgstr "لم يتم إنشاء أوامر عمل"
@@ -14626,7 +14626,7 @@ msgid "Opening Entry can not be created after Period Closing Voucher is created.
 msgstr "لا يمكن إنشاء إدخال افتتاحي بعد إنشاء قسيمة إغلاق الفترة."
 
 msgid "Opening Invoice Creation In Progress"
-msgstr "إنشاء الفاتورة الافتتاحية قيد التقدم"
+msgstr "إنشاء الفاتورة الافتتاحية تحت الإجراء"
 
 msgid "Opening Invoice Creation Tool"
 msgstr "أداة إنشاء الفاتورة الافتتاحية"
@@ -15451,73 +15451,73 @@ msgid "Parts Per Million"
 msgstr "أجزاء في المليون"
 
 msgid "Party"
-msgstr "الطرف"
+msgstr "الجهة"
 
 msgid "Party Account"
-msgstr "حساب الطرف"
+msgstr "حساب الجهة"
 
 msgid "Party Account Currency"
-msgstr "عملة حساب الطرف"
+msgstr "عملة حساب الجهة"
 
 msgid "Party Account No. (Bank Statement)"
-msgstr "رقم حساب الطرف (كشف الحساب البنكي)"
+msgstr "رقم حساب الجهة (كشف الحساب البنكي)"
 
 msgid "Party Account {0} currency ({1}) and document currency ({2}) should be same"
-msgstr "يجب أن تكون عملة حساب الطرف {0} ({1}) وعملة المستند ({2}) متطابقتين"
+msgstr "يجب أن تكون عملة حساب الجهة {0} ({1}) وعملة المستند ({2}) متطابقتين"
 
 msgid "Party Bank Account"
-msgstr "حساب الطرف البنكي"
+msgstr "حساب الجهة البنكي"
 
 msgid "Party Details"
-msgstr "تفاصيل الطرف"
+msgstr "تفاصيل الجهة"
 
 msgid "Party Full Name"
-msgstr "الاسم الكامل للطرف"
+msgstr "الاسم الكامل للجهة"
 
 msgid "Party IBAN (Bank Statement)"
-msgstr "رقم IBAN للطرف (كشف الحساب البنكي)"
+msgstr "رقم IBAN للجهة (كشف الحساب البنكي)"
 
 msgid "Party Information"
-msgstr "معلومات الطرف"
+msgstr "معلومات الجهة"
 
 msgid "Party Item Code"
-msgstr "كود صنف الطرف"
+msgstr "كود صنف الجهة"
 
 msgid "Party Link"
-msgstr "رابط الطرف"
+msgstr "رابط الجهة"
 
 msgid "Party Name"
-msgstr "اسم الطرف"
+msgstr "اسم الجهة"
 
 msgid "Party Name/Account Holder (Bank Statement)"
-msgstr "اسم الطرف/حامل الحساب (كشف الحساب البنكي)"
+msgstr "اسم الجهة/حامل الحساب (كشف الحساب البنكي)"
 
 msgid "Party Specific Item"
-msgstr "صنف خاص بالطرف"
+msgstr "صنف خاص بالجهة"
 
 msgid "Party Type"
-msgstr "نوع الطرف"
+msgstr "نوع الجهة"
 
 msgid "Party Type and Party can only be set for Receivable / Payable account<br><br>{0}"
-msgstr "يمكن تحديد نوع الطرف والطرف فقط لحساب المستحقات/الدائنة<br><br>{0}"
+msgstr "يمكن تحديد نوع الجهة والجهة فقط لحساب المستحقات/الدائنة<br><br>{0}"
 
 msgid "Party Type and Party is mandatory for {0} account"
-msgstr "نوع الطرف والطرف إلزاميان لحساب {0}"
+msgstr "نوع الجهة والجهة إلزاميان لحساب {0}"
 
 msgid "Party Type and Party is required for Receivable / Payable account {0}"
-msgstr "نوع الطرف والطرف مطلوبان لحساب المستحقات/الدائنة {0}"
+msgstr "نوع الجهة والجهة مطلوبان لحساب المستحقات/الدائنة {0}"
 
 msgid "Party Type is mandatory"
-msgstr "نوع الطرف إلزامي"
+msgstr "نوع الجهة إلزامي"
 
 msgid "Party User"
-msgstr "مستخدم الطرف"
+msgstr "مستخدم الجهة"
 
 msgid "Party can only be one of {0}"
-msgstr "يمكن أن يكون الطرف واحدًا فقط من {0}"
+msgstr "يمكن أن يكون الجهة واحدًا فقط من {0}"
 
 msgid "Party is mandatory"
-msgstr "الطرف إلزامي"
+msgstr "الجهة إلزامي"
 
 msgid "Pascal"
 msgstr "باسكال"
@@ -15700,7 +15700,7 @@ msgid "Payment Reconciliation Invoice"
 msgstr "فاتورة تسوية الدفع"
 
 msgid "Payment Reconciliation Job: {0} is running for this party. Can't reconcile now."
-msgstr "وظيفة تسوية الدفع: {0} قيد التشغيل لهذا الطرف. لا يمكن التسوية الآن."
+msgstr "وظيفة تسوية الدفع: {0} قيد التشغيل لهذه الجهة. لا يمكن التسوية الآن."
 
 msgid "Payment Reconciliation Payment"
 msgstr "دفع تسوية الدفع"
@@ -16537,10 +16537,10 @@ msgid "Please select Maintenance Status as Completed or remove Completion Date"
 msgstr "يرجى تحديد حالة الصيانة كمكتملة أو إزالة تاريخ الاكتمال"
 
 msgid "Please select Party Type first"
-msgstr "يرجى تحديد نوع الطرف أولاً"
+msgstr "يرجى تحديد نوع الجهة أولاً"
 
 msgid "Please select Posting Date before selecting Party"
-msgstr "يرجى تحديد تاريخ الترحيل قبل تحديد الطرف"
+msgstr "يرجى تحديد تاريخ الترحيل قبل تحديد الجهة"
 
 msgid "Please select Posting Date first"
 msgstr "يرجى تحديد تاريخ الترحيل أولاً"
@@ -17174,7 +17174,7 @@ msgid "Primary Contact Email"
 msgstr "البريد الإلكتروني لجهة الاتصال الأساسية"
 
 msgid "Primary Party"
-msgstr "الطرف الأساسي"
+msgstr "الجهة الأساسية"
 
 msgid "Primary Role"
 msgstr "الدور الأساسي"
@@ -19724,7 +19724,7 @@ msgid "Row #{0}: For {1}, you can select reference document only if account gets
 msgstr "الصف رقم {0}: بالنسبة لـ {1}، يمكنك تحديد مستند المرجع فقط إذا تم إيداع الحساب"
 
 msgid "Row #{0}: For {1}, you can select reference document only if account gets debited"
-msgstr "الصف رقم {0}: بالنسبة لـ {1}، يمكنك تحديد مستند المرجع فقط إذا تم خصم الحساب"
+msgstr "الصف رقم {0}: بالنسبة لـ {1}، يمكنك تحديد مستند المرجع فقط إذا تم انشاء حركة مدين على الحساب"
 
 msgid "Row #{0}: From Date cannot be before To Date"
 msgstr "الصف رقم {0}: لا يمكن أن يكون تاريخ البدء قبل تاريخ الانتهاء"
@@ -20027,7 +20027,7 @@ msgid "Row {0}: Accepted Qty and Rejected Qty can't be zero at the same time."
 msgstr "الصف {0}: الكمية المقبولة والكمية المرفوضة لا يمكن أن تكونا صفرًا في نفس الوقت."
 
 msgid "Row {0}: Account {1} and Party Type {2} have different account types"
-msgstr "الصف {0}: الحساب {1} ونوع الطرف {2} لهما أنواع حسابات مختلفة"
+msgstr "الصف {0}: الحساب {1} ونوع الجهة {2} لهما أنواع حسابات مختلفة"
 
 msgid "Row {0}: Activity Type is mandatory."
 msgstr "الصف {0}: نوع النشاط إلزامي."
@@ -20138,10 +20138,10 @@ msgid "Row {0}: Packing Slip is already created for Item {1}."
 msgstr "الصف {0}: تم إنشاء قسيمة التعبئة بالفعل للصنف {1}."
 
 msgid "Row {0}: Party / Account does not match with {1} / {2} in {3} {4}"
-msgstr "الصف {0}: الطرف / الحساب لا يتطابق مع {1} / {2} في {3} {4}"
+msgstr "الصف {0}: الجهة / الحساب لا يتطابق مع {1} / {2} في {3} {4}"
 
 msgid "Row {0}: Party Type and Party is required for Receivable / Payable account {1}"
-msgstr "الصف {0}: نوع الطرف والطرف مطلوبان لحساب مستحق القبض / الدفع {1}"
+msgstr "الصف {0}: نوع الجهة والجهة مطلوبان لحساب مستحق القبض / الدفع {1}"
 
 msgid "Row {0}: Payment Term is mandatory"
 msgstr "الصف {0}: شرط الدفع إلزامي"
@@ -20231,7 +20231,7 @@ msgid "Row {0}: {1} must be greater than 0"
 msgstr "الصف {0}: يجب أن يكون {1} أكبر من 0"
 
 msgid "Row {0}: {1} {2} cannot be same as {3} (Party Account) {4}"
-msgstr "الصف {0}: {1} {2} لا يمكن أن يكون مماثلاً لـ {3} (حساب الطرف) {4}"
+msgstr "الصف {0}: {1} {2} لا يمكن أن يكون مماثلاً لـ {3} (حساب الجهة) {4}"
 
 msgid "Row {0}: {1} {2} does not match with {3}"
 msgstr "الصف {0}: {1} {2} لا يتطابق مع {3}"
@@ -20804,7 +20804,7 @@ msgid "Second Email"
 msgstr "البريد الإلكتروني الثاني"
 
 msgid "Secondary Party"
-msgstr "الطرف الثانوي"
+msgstr "الجهة الثانوية"
 
 msgid "Secondary Role"
 msgstr "الدور الثانوي"
@@ -21818,7 +21818,7 @@ msgid "Show Linked Delivery Notes"
 msgstr "إظهار ملاحظات التسليم المرتبطة"
 
 msgid "Show Net Values in Party Account"
-msgstr "إظهار القيم الصافية في حساب الطرف"
+msgstr "إظهار القيم الصافية في حساب الجهة"
 
 msgid "Show Open"
 msgstr "إظهار المفتوح"
@@ -23342,28 +23342,28 @@ msgid "Tax Withheld Vouchers"
 msgstr "السندات المحتجزة ضريبيًا"
 
 msgid "Tax Withholding"
-msgstr "الخصم الضريبي"
+msgstr "الاقتطاع الضريبي"
 
 msgid "Tax Withholding Account"
-msgstr "حساب الخصم الضريبي"
+msgstr "حساب الاقتطاع الضريبي"
 
 msgid "Tax Withholding Category"
-msgstr "فئة الخصم الضريبي"
+msgstr "فئة الاقتطاع الضريبي"
 
 msgid "Tax Withholding Category {} against Company {} for Customer {} should have Cumulative Threshold value."
-msgstr "فئة الخصم الضريبي {} مقابل الشركة {} للعميل {} يجب أن تحتوي على قيمة عتبة تراكمية."
+msgstr "فئة الاقتطاع الضريبي {} مقابل الشركة {} للعميل {} يجب أن تحتوي على قيمة عتبة تراكمية."
 
 msgid "Tax Withholding Details"
-msgstr "تفاصيل الخصم الضريبي"
+msgstr "تفاصيل الاقتطاع الضريبي"
 
 msgid "Tax Withholding Net Total"
-msgstr "إجمالي صافي الخصم الضريبي"
+msgstr "إجمالي صافي الاقتطاع الضريبي"
 
 msgid "Tax Withholding Rate"
-msgstr "معدل الخصم الضريبي"
+msgstr "معدل الاقتطاع الضريبي"
 
 msgid "Tax Withholding Rates"
-msgstr "معدلات الخصم الضريبي"
+msgstr "معدلات الاقتطاع الضريبي"
 
 msgid "Tax will be withheld only for amount exceeding the cumulative threshold"
 msgstr "سيتم خصم الضريبة فقط للمبلغ الذي يتجاوز العتبة التراكمية"
@@ -24332,7 +24332,7 @@ msgid "Total (Company Currency)"
 msgstr "الإجمالي (عملة الشركة)"
 
 msgid "Total (Credit)"
-msgstr "الإجمالي (الائتمان)"
+msgstr "الإجمالي (الدائن)"
 
 msgid "Total (Without Tax)"
 msgstr "الإجمالي (بدون الضريبة)"
@@ -24440,16 +24440,16 @@ msgid "Total Costing Amount (via Timesheet)"
 msgstr "مبلغ التكلفة الإجمالي (عبر الجدول الزمني)"
 
 msgid "Total Credit"
-msgstr "إجمالي الائتمان"
+msgstr "إجمالي الدائن"
 
 msgid "Total Credit/ Debit Amount should be same as linked Journal Entry"
-msgstr "يجب أن يكون إجمالي مبلغ الائتمان/الخصم مماثلاً لإدخال دفتر اليومية المرتبط"
+msgstr "يجب أن يكون إجمالي مبلغ الدائن/المدين مماثلاً لإدخال دفتر اليومية المرتبط"
 
 msgid "Total Debit"
-msgstr "إجمالي الخصم"
+msgstr "إجمالي المدين"
 
 msgid "Total Debit must be equal to Total Credit. The difference is {0}"
-msgstr "يجب أن يكون إجمالي الخصم مساويًا لإجمالي الائتمان. الفرق هو {0}"
+msgstr "يجب أن يكون إجمالي المدين مساويًا لإجمالي الدائن. الفرق هو {0}"
 
 msgid "Total Delivered Amount"
 msgstr "المبلغ المسلم الإجمالي"
@@ -24887,7 +24887,7 @@ msgid "Trial Balance (Simple)"
 msgstr "ميزان المراجعة (بسيط)"
 
 msgid "Trial Balance for Party"
-msgstr "ميزان المراجعة للطرف"
+msgstr "ميزان المراجعة للجهة"
 
 msgid "Trial Period End Date"
 msgstr "تاريخ انتهاء الفترة التجريبية"
@@ -25022,7 +25022,7 @@ msgid "Unblock Invoice"
 msgstr "إلغاء حظر الفاتورة"
 
 msgid "Unclosed Fiscal Years Profit / Loss (Credit)"
-msgstr "أرباح/خسائر السنوات المالية غير المغلقة (ائتمان)"
+msgstr "أرباح/خسائر السنوات المالية غير المغلقة (دائن)"
 
 msgid "Under AMC"
 msgstr "تحت عقد صيانة سنوي"
@@ -26189,7 +26189,7 @@ msgid "Work Orders Created: {0}"
 msgstr "أوامر العمل التي تم إنشاؤها: {0}"
 
 msgid "Work Orders in Progress"
-msgstr "أوامر العمل قيد التقدم"
+msgstr "أوامر العمل تحت الإجراء"
 
 msgid "Work in Progress"
 msgstr "قيد الإنجاز"
@@ -26972,7 +26972,7 @@ msgid "{0} {1} is already linked to Common Code {2}."
 msgstr "{0} {1} مرتبط بالفعل بالكود المشترك {2}."
 
 msgid "{0} {1} is associated with {2}, but Party Account is {3}"
-msgstr "{0} {1} مرتبط بـ {2}، لكن حساب الطرف هو {3}"
+msgstr "{0} {1} مرتبط بـ {2}، لكن حساب الجهة هو {3}"
 
 msgid "{0} {1} is cancelled or closed"
 msgstr "{0} {1} ملغى أو مغلق"
@@ -27053,7 +27053,7 @@ msgid "{0} {1}: Customer is required against Receivable account {2}"
 msgstr "{0} {1}: العميل مطلوب مقابل الحساب المستحق القبض {2}"
 
 msgid "{0} {1}: Either debit or credit amount is required for {2}"
-msgstr "{0} {1}: مطلوب إما مبلغ الخصم أو الائتمان لـ {2}"
+msgstr "{0} {1}: مطلوب إما مبلغ المدين أو الدائن لـ {2}"
 
 msgid "{0} {1}: Supplier is required against Payable account {2}"
 msgstr "{0} {1}: المورد مطلوب مقابل الحساب المستحق الدفع {2}"
@@ -27144,6 +27144,9 @@ msgstr "{} {} مرتبط بالفعل بـ {} {}"
 
 msgid "{} {} is not affecting bank account {}"
 msgstr "{} {} لا يؤثر على الحساب البنكي {}"
+
+msgid "Company Switcher"
+msgstr "تبديل الشركات"
 
 msgid "Company Switcher"
 msgstr "تبديل الشركات"
