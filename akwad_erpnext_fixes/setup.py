@@ -33,7 +33,7 @@ def insert_letter_head():
             "disabled": 0,
             "source": "HTML",
             "footer_source": "HTML",
-            "content": """ {% set company_address = "" %}
+            "content": """{% set company_address = "" %}
 {% set default_company = frappe.db.get_single_value("Global Defaults" , "default_company")%}
 {% if default_company %}
     {% set address_doc_name = frappe.db.get_value("Dynamic Link", {"link_doctype" : "Company" , "link_name" : default_company , "parenttype": "Address"} , "parent") %}
@@ -63,8 +63,8 @@ def insert_letter_head():
             </td>
         </tr>
     </tbody>
-</table> """,
-            "footer": """ {% set company_address = "" %}
+</table>""",
+            "footer": """{% set company_address = "" %}
 {% set default_company = frappe.db.get_single_value("Global Defaults" , "default_company")%}
 {% if default_company %}
     {% set address_doc_name = frappe.db.get_value("Dynamic Link", {"link_doctype" : "Company" , "link_name" : default_company , "parenttype": "Address"} , "parent") %}
@@ -77,9 +77,9 @@ def insert_letter_head():
 
 {% if company_address %}
     <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; font-size: 12px;">
-      {{ company_address.address_title }} - {{ company_address.address_line2 }} | Tel: {{ company_address.phone }} | Email: {{ company_address.email_id }}
+      {{ company_address.address_title }} - {{ company_address.address_line1 }} - {{ company_address.city }}, {{ company_address.country }} | Tel: {{ company_address.phone }} | Email: {{ company_address.email_id }}
     </footer>
-{% endif %} """
+{% endif %}"""
         }).insert(ignore_permissions=True)
 
 
