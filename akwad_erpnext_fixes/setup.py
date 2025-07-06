@@ -128,14 +128,20 @@ def insert_print_style():
     margin: 20px 0;
 }
 
+.pf-item-table td {
+    border: 1px dashed black;
+    vertical-align: middle!important;
+}
+
 .pf-item-table th {
     font-weight: normal;
     color: white;
+    text-align: center;
 }
 
 .pf-terms {
     margin-top: 100px;
-} """
+}  """
         }).insert(ignore_permissions=True)
 
 
