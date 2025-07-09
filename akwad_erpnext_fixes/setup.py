@@ -143,7 +143,6 @@ def insert_print_style():
     margin-top: 100px;
 }
 
-@media print {
 .print-format th {
 
 	background-color: lightgray !important; /* th backgraound color */
@@ -172,7 +171,7 @@ def insert_print_style():
 
 	margin-top: 0px;
 
-}} """
+} """
         }).insert(ignore_permissions=True)
 
 
