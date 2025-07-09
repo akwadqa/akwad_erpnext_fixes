@@ -105,6 +105,18 @@ def insert_print_style():
             "disabled": 0,
             "standard": 0,
             "css": """ @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+ 
+ thead {
+	background-color: lightgray !important;
+}
+
+.print-format td, .print-format th {
+	padding: 2px 4px !important; /* reduce row height */
+}
+
+.print-format tr:last-child {
+	font-weight: bold !important; /* make last row bold */
+}
 
 .pf-font {
     font-family: "Rubik", sans-serif;
@@ -141,36 +153,6 @@ def insert_print_style():
 
 .pf-terms {
     margin-top: 100px;
-}
-
-.print-format th {
-
-	background-color: lightgray !important; /* th backgraound color */
-
-}
-
-.print-format td, .print-format th {
-
-	padding: 2px 4px !important; /* reduce row height */
-
-}
-
-.print-format tr {
-
-	height: 0 !important; /* reduce row height */
-
-}
-
-.print-format tr:last-child {
-
-	font-weight: bold !important; /* make last row bold */
-
-}
-
-.print-format .ql-snow p {
-
-	margin-top: 0px;
-
 } """
         }).insert(ignore_permissions=True)
 
