@@ -26,6 +26,7 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/akwad_erpnext_fixes/css/akwad_erpnext_fixes.css"
+app_include_css = "/assets/akwad_erpnext_fixes/css/akwad_erpnext_fixes_desk.css"
 # app_include_js = "/assets/akwad_erpnext_fixes/js/akwad_erpnext_fixes.js"
 
 # include js, css files in header of web template
