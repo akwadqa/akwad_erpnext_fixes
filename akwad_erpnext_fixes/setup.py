@@ -64,7 +64,33 @@ def insert_letter_head():
         </tr>
     </tbody>
 </table>""",
-            "footer": """{% set company_address = "" %}
+            "footer": """<style>
+    @media print {
+      .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-family: 'Zain', sans-serif;
+      }
+        @page {
+            size: A4;
+            margin: 0.3in !important;
+        }
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-family: 'Rubik', sans-serif;
+      }
+  </style>
+
+{% set company_address = "" %}
 {% set default_company = frappe.db.get_single_value("Global Defaults" , "default_company")%}
 {% if default_company %}
     {% set address_doc_name = frappe.db.get_value("Dynamic Link", {"link_doctype" : "Company" , "link_name" : default_company , "parenttype": "Address"} , "parent") %}
@@ -74,11 +100,8 @@ def insert_letter_head():
     {% endif %}
 {% endif %}
 
-
 {% if company_address %}
-    <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; font-size: 12px;">
-      {{ company_address.address_title }} - {{ company_address.address_line1 }} - {{ company_address.city }}, {{ company_address.country }} | Tel: {{ company_address.phone }} | Email: {{ company_address.email_id }}
-    </footer>
+    © 2025 <b>{{ company_address.address_title }}</b> | {{ company_address.address_line2 }} | Tel: {{ company_address.phone }} | Email: <b>{{ company_address.email_id }}</b>
 {% endif %}"""
         }).insert(ignore_permissions=True)
 
