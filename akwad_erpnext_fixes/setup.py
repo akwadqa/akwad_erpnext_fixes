@@ -150,8 +150,8 @@ def insert_print_style():
     width: 100%;
     text-align: right;
     text-transform: uppercase;
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 40px;
+    font-weight: normal;
 }
 
 .pf-item-table {
