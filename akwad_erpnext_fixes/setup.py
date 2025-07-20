@@ -137,10 +137,6 @@ def insert_print_style():
 	padding: 2px 4px !important; /* reduce row height */
 }
 
-.print-format tr:last-child {
-	font-weight: bold !important; /* make last row bold */
-}
-
 .pf-font {
     font-family: "Rubik", sans-serif;
 }
