@@ -1,0 +1,23 @@
+{
+ "background_color": "#ffeed4",
+ "color": "#c97f06",
+ "creation": "2020-07-20 21:01:04.457598",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Warehouse",
+ "dynamic_filters_json": "[[\"Warehouse\",\"company\",\"=\",\"frappe.defaults.get_user_default(\\\"Company\\\")\"]]",
+ "filters_json": "[[\"Warehouse\",\"disabled\",\"=\",0]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Total Warehouses",
+ "modified": "2025-08-17 13:50:53.962340",
+ "modified_by": "Administrator",
+ "module": "Akwad ERPNext Fixes",
+ "name": "Total Warehouses",
+ "owner": "Administrator",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Monthly",
+ "type": "Document Type"
+}
