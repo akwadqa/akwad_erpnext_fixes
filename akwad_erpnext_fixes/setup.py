@@ -37,11 +37,17 @@ def apply_site_settings():
     # Global Search Settings
     global_search_settings = frappe.get_single("Global Search Settings")
     doctype_list = ["Customer", "Supplier"]
+
+    existing_doctypes = {d.document_type for d in global_search_settings.allowed_in_global_search}
+
     for doctype in doctype_list:
-        global_search_settings.append("allowed_in_global_search", {
-            "document_type": doctype
-        })
+        if doctype not in existing_doctypes:
+            global_search_settings.append("allowed_in_global_search", {
+                "document_type": doctype
+            })
+
     global_search_settings.save(ignore_permissions=True)
+
 
     # Accounts Settings
     accounts_settings = frappe.get_single("Accounts Settings")
