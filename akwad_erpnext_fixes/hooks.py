@@ -4,6 +4,20 @@ app_publisher = "Akwad Programming"
 app_description = "This App contains some fixes and enhancements on Frappe ERPNext that are done by Akwad Programming"
 app_email = "support@akwad.qa"
 app_license = "mit"
+app_home = "/app/home"
+app_logo_url = "/assets/akwad_erpnext_fixes/images/akwad-logo_symbol.svg"
+app_icon = "fa fa-th"
+app_color = "#e74c3c"
+
+add_to_apps_screen = [
+	{
+		"name": app_name,
+		"logo": "/assets/akwad_erpnext_fixes/images/akwad-logo_symbol.svg",
+		"title": "Akwad ERP",
+		"route": app_home,
+	}
+]
+
 
 # Apps
 # ------------------
