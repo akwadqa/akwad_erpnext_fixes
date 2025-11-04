@@ -1,4 +1,5 @@
 {
+ "app": "akwad_erpnext_fixes",
  "charts": [
   {
    "chart_name": "Warehouse wise Stock Value",
@@ -6,7 +7,7 @@
   }
  ],
  "content": "[{\"id\":\"WKeeHLcyXI\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Stock Value\",\"col\":4}},{\"id\":\"6nVoOHuy5w\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Warehouses\",\"col\":4}},{\"id\":\"OUex5VED7d\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Active Items\",\"col\":4}},{\"id\":\"A3svBa974t\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Warehouse wise Stock Value\",\"col\":12}},{\"id\":\"wwAoBx30p3\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"LkqrpJHM9X\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"0EYKOrx6U1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"yxCx6Tay4Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"o3sdEnNy34\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Balance\",\"col\":3}},{\"id\":\"m9O0HUUDS5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"9AmAh9LnPI\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"3SmmwBbOER\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters</b></span>\",\"col\":12}},{\"id\":\"OAGNH9njt7\",\"type\":\"card\",\"data\":{\"card_name\":\"Items Catalogue\",\"col\":6}},{\"id\":\"jF9eKz0qr0\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Transactions\",\"col\":6}},{\"id\":\"vnF5YnInvE\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"M1fTAYXZp1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b><b></b></span>\",\"col\":12}},{\"id\":\"tyTnQo-MIS\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Reports\",\"col\":6}},{\"id\":\"ve3L6ZifkB\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":6}}]",
- "creation": "2020-03-02 15:43:10.096528",
+ "creation": "2025-11-04 10:10:35.662404",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -14,8 +15,10 @@
  "hide_custom": 0,
  "icon": "stock",
  "idx": 0,
+ "indicator_color": "green",
  "is_hidden": 0,
  "label": "Stock",
+ "link_type": "DocType",
  "links": [
   {
    "dependencies": "",
@@ -635,8 +638,8 @@
    "type": "Link"
   }
  ],
- "modified": "2025-06-21 21:14:55.263597",
- "modified_by": "Administrator",
+ "modified": "2025-11-04 10:10:35.662404",
+ "modified_by": "alaa@akwad.qa",
  "module": "Akwad ERPNext Fixes",
  "name": "Stock",
  "number_cards": [
@@ -653,7 +656,7 @@
    "number_card_name": "Total Active Items"
   }
  ],
- "owner": "Administrator",
+ "owner": "alaa@akwad.qa",
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
@@ -669,27 +672,32 @@
  "sequence_id": 7.0,
  "shortcuts": [
   {
+   "doc_view": "",
    "label": "Stock Entry",
    "link_to": "Stock Entry",
    "type": "DocType"
   },
   {
+   "doc_view": "",
    "label": "Stock Ledger",
    "link_to": "Stock Ledger",
    "report_ref_doctype": "Stock Ledger Entry",
    "type": "Report"
   },
   {
+   "doc_view": "",
    "label": "Stock Balance",
    "link_to": "Stock Balance",
    "report_ref_doctype": "Stock Ledger Entry",
    "type": "Report"
   },
   {
+   "doc_view": "",
    "label": "Dashboard",
    "link_to": "Stock",
    "type": "Dashboard"
   }
  ],
- "title": "Stock"
+ "title": "Stock",
+ "type": "Workspace"
 }

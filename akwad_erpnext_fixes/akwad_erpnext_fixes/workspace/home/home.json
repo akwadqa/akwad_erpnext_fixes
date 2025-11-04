@@ -1,7 +1,8 @@
 {
+ "app": "akwad_erpnext_fixes",
  "charts": [],
  "content": "[{\"id\":\"kb3XPLg8lb\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"snrzfbFr5Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"id\":\"CPxEyhaf3G\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"SHJKakmLLf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier\",\"col\":3}},{\"id\":\"myi_B4-2OE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"d_KVM1gsf9\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
- "creation": "2020-01-23 13:46:38.833076",
+ "creation": "2025-11-04 10:08:55.444187",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -9,8 +10,10 @@
  "hide_custom": 0,
  "icon": "getting-started",
  "idx": 0,
- "is_hidden": 0,
+ "indicator_color": "green",
+ "is_hidden": 1,
  "label": "Home",
+ "link_type": "DocType",
  "links": [
   {
    "dependencies": "",
@@ -21,6 +24,7 @@
    "link_to": "Account",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -32,6 +36,7 @@
    "link_to": "Company",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -43,6 +48,7 @@
    "link_to": "Customer",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -54,6 +60,7 @@
    "link_to": "Supplier",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -65,6 +72,7 @@
    "link_to": "Item",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -76,6 +84,7 @@
    "link_to": "Warehouse",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -87,6 +96,7 @@
    "link_to": "Brand",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -98,6 +108,7 @@
    "link_to": "UOM",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -109,6 +120,7 @@
    "link_to": "Stock Reconciliation",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -120,6 +132,7 @@
    "link_to": "Lead",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -131,6 +144,7 @@
    "link_to": "Customer Group",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -142,6 +156,7 @@
    "link_to": "Territory",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -153,6 +168,7 @@
    "link_to": "Data Import",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -164,6 +180,7 @@
    "link_to": "Opening Invoice Creation Tool",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -175,6 +192,7 @@
    "link_to": "Chart of Accounts Importer",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -186,6 +204,7 @@
    "link_to": "Letter Head",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   },
   {
@@ -197,20 +216,25 @@
    "link_to": "Email Account",
    "link_type": "DocType",
    "onboard": 1,
+   "only_for": "Qatar",
    "type": "Link"
   }
  ],
- "modified": "2025-06-21 21:12:04.436966",
- "modified_by": "Administrator",
+ "modified": "2025-11-04 10:08:55.444187",
+ "modified_by": "alaa@akwad.qa",
  "module": "Akwad ERPNext Fixes",
  "name": "Home",
  "number_cards": [],
- "owner": "Administrator",
+ "owner": "alaa@akwad.qa",
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
  "restrict_to_domain": "",
- "roles": [],
+ "roles": [
+  {
+   "role": "Administrator"
+  }
+ ],
  "sequence_id": 1.0,
  "shortcuts": [
   {
@@ -222,20 +246,24 @@
    "type": "DocType"
   },
   {
+   "doc_view": "",
    "label": "Customer",
    "link_to": "Customer",
    "type": "DocType"
   },
   {
+   "doc_view": "",
    "label": "Supplier",
    "link_to": "Supplier",
    "type": "DocType"
   },
   {
+   "doc_view": "",
    "label": "Sales Invoice",
    "link_to": "Sales Invoice",
    "type": "DocType"
   }
  ],
- "title": "Home"
+ "title": "Home",
+ "type": "Workspace"
 }
