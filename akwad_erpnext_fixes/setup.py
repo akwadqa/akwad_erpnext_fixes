@@ -26,12 +26,17 @@ def apply_site_settings():
     portal_settings.default_role = "Customer"
     portal_settings.save(ignore_permissions=True)
 
-    # Log Settings
+# Log Settings
     log_settings = frappe.get_single("Log Settings")
     log_settings.append("logs_to_clear", {
             "ref_doctype": "BOM Update Log",
             "days": 1
-        })        
+        })
+    # Remove stale rows referencing DocTypes that no longer exist
+    log_settings.logs_to_clear = [
+        row for row in log_settings.logs_to_clear
+        if frappe.db.exists("DocType", row.ref_doctype)
+    ]
     log_settings.save(ignore_permissions=True)
 
     # Global Search Settings
@@ -69,7 +74,6 @@ def apply_site_settings():
 
     # Global Defaults
     global_defaults = frappe.get_single("Global Defaults")
-    global_defaults.default_distance_unit = "Kilometer"
     global_defaults.disable_rounded_total = 1
     global_defaults.save(ignore_permissions=True)
 
