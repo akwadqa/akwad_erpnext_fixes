@@ -42,6 +42,9 @@ add_to_apps_screen = [
 # app_include_css = "/assets/akwad_erpnext_fixes/css/akwad_erpnext_fixes.css"
 # app_include_css = "/assets/akwad_erpnext_fixes/css/akwad_erpnext_fixes_desk.css"
 # app_include_js = "/assets/akwad_erpnext_fixes/js/akwad_erpnext_fixes.js"
+app_include_js = ["report_print_style.bundle.js", "report_print_dialog.bundle.js"]
+
+boot_session = "akwad_erpnext_fixes.boot.boot_session"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/akwad_erpnext_fixes/css/akwad_erpnext_fixes.css"

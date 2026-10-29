@@ -1,1 +1,2 @@
 akwad_erpnext_fixes.patches.add_custom_payment_type_field
+akwad_erpnext_fixes.patches.create_print_style
