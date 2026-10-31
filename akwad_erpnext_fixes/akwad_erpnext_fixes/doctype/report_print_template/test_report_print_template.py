@@ -9,6 +9,7 @@ from akwad_erpnext_fixes.akwad_erpnext_fixes.doctype.report_print_template.repor
 	create_template,
 	get_report_columns_query,
 	get_template_columns,
+	report_query,
 	update_template_columns,
 )
 
@@ -76,6 +77,23 @@ class IntegrationTestReportPrintTemplate(IntegrationTestCase):
 
 		with self.assertRaises(frappe.PermissionError):
 			create_template(report="General Ledger", template_name="No Perm", fields=[])
+
+	def test_report_query_offers_only_reports_with_default_format(self):
+		# Trial Balance has a "Trial Balance Standard" format, but no "- Default"
+		reports = [row[0] for row in report_query("Report", "", "name", 0, 20, {})]
+
+		self.assertIn("General Ledger", reports)
+		self.assertNotIn("Trial Balance", reports)
+
+	def test_validate_rejects_report_without_default_format(self):
+		doc = frappe.get_doc({
+			"doctype": "Report Print Template",
+			"report": "Trial Balance",
+			"template_name": "No Default Format",
+		})
+
+		with self.assertRaises(frappe.ValidationError):
+			doc.insert(ignore_permissions=True)
 
 	def test_boot_injects_exclusion_registry(self):
 		bootinfo = frappe._dict()

@@ -1,10 +1,15 @@
 // Copyright (c) 2026, Akwad Programming and contributors
 // For license information, please see license.txt
 
-const COLUMNS_QUERY =
-	"akwad_erpnext_fixes.akwad_erpnext_fixes.doctype.report_print_template.report_print_template.get_report_columns_query";
+const METHOD_BASE =
+	"akwad_erpnext_fixes.akwad_erpnext_fixes.doctype.report_print_template.report_print_template.";
+const COLUMNS_QUERY = METHOD_BASE + "get_report_columns_query";
 
 frappe.ui.form.on("Report Print Template", {
+	setup(frm) {
+		frm.set_query("report", () => ({ query: METHOD_BASE + "report_query" }));
+	},
+
 	refresh(frm) {
 		frm.fields_dict.columns.grid.get_field("field").get_query = function () {
 			return {

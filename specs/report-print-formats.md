@@ -294,7 +294,7 @@ now shared that one contract (boot-injected config, dialog checkboxes, a
 second-dialog template picker, now native-dialog fields) — it was never
 the bottleneck.
 
-### Phase 6 — Print dialog UX fixes (next up)
+### Phase 6 — Print dialog UX fixes (shipped — see progress.md)
 
 Four fixes to the native-dialog picker shipped in Phase 5, requested after
 a live look at the dialog. No new doctypes; no fieldtype changes.
@@ -345,6 +345,21 @@ a live look at the dialog. No new doctypes; no fieldtype changes.
    `update_template_columns`) to insert the doc, then auto-selects it in
    the Link field. Formalizes the "Save as new template…" horizon item
    below.
+
+### Phase 7 — Report filter + dialog polish (shipped — see progress.md)
+
+1. **`Report Print Template.report` limited to reports with a
+   `"<report> - Default"` Print Format.** Only that format renders
+   template columns, so a template for any other report is dead data.
+   Enforced in two places: `report_query` (Link search) and `validate()`
+   (all writes).
+2. **Dialog redesign, same behavior.** The MultiCheck is now labelled
+   "Optional Columns". The note and the Update/Create button share one
+   inline row, which replaces the two stacked Button fields. The
+   always-included columns are one muted text line, not the grayed
+   checkbox grid from Phase 6 item 3. Columns that can't be toggled should
+   not look like controls. The Lesson 9 separation from the MultiCheck
+   stays.
 
 ### Next
 

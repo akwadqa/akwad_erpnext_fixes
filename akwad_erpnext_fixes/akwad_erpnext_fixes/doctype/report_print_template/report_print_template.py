@@ -2,11 +2,48 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 
 class ReportPrintTemplate(Document):
-	pass
+	def validate(self):
+		if self.report not in get_reports_with_default_print_format():
+			frappe.throw(
+				_("Report {0} has no enabled Print Format named {1}").format(
+					frappe.bold(self.report), frappe.bold(f"{self.report} - Default")
+				)
+			)
+
+
+def get_reports_with_default_print_format():
+	# Only the "<report> - Default" format renders template columns; the print
+	# dialog shows the picker for that format alone.
+	formats = frappe.get_all(
+		"Print Format",
+		filters={"print_format_for": "Report", "disabled": 0, "name": ["like", "% - Default"]},
+		fields=["name", "report"],
+	)
+	return [f.report for f in formats if f.name == f"{f.report} - Default"]
+
+
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def report_query(doctype, txt, searchfield, start, page_len, filters):
+	reports = get_reports_with_default_print_format()
+	if not reports:
+		return []
+
+	return frappe.get_list(
+		"Report",
+		filters={"name": ["in", reports]},
+		or_filters={"name": ["like", f"%{txt}%"]} if txt else None,
+		fields=["name"],
+		limit_start=start,
+		limit=page_len,
+		order_by="name",
+		as_list=True,
+	)
 
 
 # Fieldnames each report's print format always renders itself, or handles via interactive filter
