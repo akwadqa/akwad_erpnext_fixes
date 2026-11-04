@@ -539,3 +539,113 @@ Not yet done:
 - [x] Live check on `akw.localhost` (`bench serve`, agent-browser):
       empty, selection-without-template ("Save as Template") and
       modified-template (`Update "Test One"`) states all render correctly.
+
+## Phase 8 — Theme ownership, PDF fidelity, filters, dialog accuracy (CODE DONE, 2026-11-03; live check pending)
+
+Spec items 1–5 under "Phase 8". Implemented in the order the spec gives.
+
+- [x] Item 5: theme moved to `Akwad Print Style` (literal colors, seeded by
+      `create_print_style.py`). `ns.CSS` now holds structure only: no
+      color, no font-family, no `var()`. Duplicate rules removed. The
+      style is selected in Print Settings on `akw.localhost`.
+- [x] Item 3: header and filter rows use a two-cell table and plain
+      blocks, not flex or gap. No `font-variant-numeric`. The Print Style
+      keeps Rubik for the `.pf-*` formats; report rules do not depend on it.
+- [x] Item 4: `build_header({filters_html})` renders core's `subtitle`
+      (empty when "Include filters" is off). `meta` and `strip_prefix`
+      removed. The General Ledger fixture passes `filters_html: subtitle`;
+      `modified` bumped to 2026-11-03.
+- [x] Item 1: `EXCLUDED_COLUMNS_BY_REPORT` renamed
+      `PRINT_COLUMNS_BY_REPORT`, shape `{excluded_fieldnames,
+      printed_columns}`. The dialog line now reads
+      "Date, Particulars, Party, Debit, Credit, Balance".
+- [x] Item 2b: `doc_events["Print Style"].on_update` →
+      `print_style.clear_boot_cache_if_selected`.
+- [x] Tests:
+  - Python: `tests/test_print_style.py` (2 tests, pass). Temp-revert of
+    the hook: the "selected style clears bootinfo" test fails, as intended.
+  - JS: `tests/report_print_bundles.test.js`, run with `node --test` (4
+    tests, pass): filters_html rendered and omitted, structural CSS has no
+    color/flex/var, always-included line uses `printed_columns`. No
+    temp-revert done for the JS tests.
+  - Existing suite: 8/8 pass. Test boot assertion updated to the new name.
+- [x] `bench build` needed Node 24 (`nvm use 24`); the default Node 20 fails
+      frappe's `engines` check. `bench migrate` run on `akw.localhost`.
+- [ ] Not done: Step 0 reproduction and the live check. No real PDF
+      downloaded from `akw.localhost`, and no Desk click-through of the
+      dialog line or "Include filters". Item 3's PDF fidelity is therefore
+      unverified.
+- Note: redis was not running; I started the cache and queue instances
+  with `redis-server config/redis_*.conf --daemonize yes`.
+
+### Phase 8 follow-up — theme independent of the selected Print Style (2026-11-04)
+
+Live check on bench-03 showed no styling: `create_print_style` had already run
+there (once per site) and the style was not selected in Print Settings.
+Decision (user): the report format must not depend on the Print Settings choice.
+
+- [x] `boot_session` adds `akwad_report_theme_css` (the `Akwad Print Style` CSS);
+      `get_style_tag()` embeds it after the structural CSS.
+- [x] Accent follows the `custom_color` field of `Akwad Print Style`: boot replaces
+      the literal default `#00589c` in the CSS with it (literals, because of
+      wkhtmltopdf). Empty or non-hex values keep the default. 3 Python tests.
+      Editing `--akwad-accent` or the literal in the CSS still works but is no
+      longer the intended knob.
+- [x] `print_style.clear_boot_cache_if_selected` also clears boot when the saved
+      style is `Akwad Print Style`, selected or not.
+- [x] No new patch (user decision): re-execute `create_print_style` by hand on
+      sites that already ran it. It overwrites edits to that style.
+- [x] Tests: 2 Python + 1 JS added; each fails with its fix reverted. Suite 12/12,
+      node 5/5.
+- [x] Live (akw.localhost, Classic selected): header cell grey with blue border.
+- [ ] Not done: deploy to bench-03 (aws-vault locked), real PDF
+      download there.
+- Known: the whole style CSS is embedded, so its `.print-format td` padding rule
+  also applies to the report under other styles.
+
+## Phase 9 — Look: option E "Classic Masar Mix" (CODE DONE, 2026-11-04; live check pending)
+
+Five looks mocked on the design canvas
+https://claude.ai/artifact/2BqXHuZYY7ori4DXF2HprY; the user chose E. See
+the spec's "Phase 9" for what each option was and what E changes.
+
+- [x] `report_print_style.bundle.js`: centred title block in
+      `build_header()`; new `render_filter_strip()` turns core's filter
+      rows into one run-in line plus an "Options" line of on/off pills;
+      structural CSS rewritten for E (sizes, spacing, uppercase header,
+      `!important` cell padding to beat the DocType `.print-format td`
+      rule); `render_extra_headers()` emits plain `<th>`.
+- [x] `create_print_style.py`: `.akwad-report` theme rewritten with E's
+      palette (ink #202020, muted #646464, rules #e8e8e8, strip #f8f9fa,
+      pill tint #eef8ff/#bce2ff, accent literal #00589c), Rubik first in
+      the font stack, 8px strip and 4px pill radii.
+- [x] General Ledger fixture: period line with "Amounts in <currency>",
+      `akwad-row-opening` and `akwad-row-spacer` classes, `akwad-cell-date`,
+      voucher no and account as muted sub-lines, header alignment by class.
+      `modified` bumped to 2026-11-04 12:00.
+- [x] Tests: node 7/7 (3 new: title block, pills + inline rows, unknown
+      markup fallback). Temp-revert of flag detection: pills test fails,
+      restored. Python 15/15 on `akw.localhost`; accent assertion updated
+      to E's 1px rule.
+- [x] `akw.localhost`: `bench execute ...create_print_style.execute`,
+      `bench migrate`, `bench build --app akwad_erpnext_fixes` (Node 24,
+      new hashed `report_print_style.bundle.VA6S4VIG.js`), `clear-cache`.
+      Fixture and style confirmed in the DB.
+- [ ] Not done: live Desk print and real PDF download. The test site's
+      recorded logins fail (see memory note); needs a working session or
+      a manual click-through after a browser reload (Lesson 2).
+- [ ] Not done: Rubik on the PDF server. Without it PDFs use Helvetica or
+      Arial. Install the font system-wide on each server that renders
+      PDFs if Rubik matters on paper.
+- Known: a Select filter whose value is literally Yes or No is shown as a
+  pill, the same as a Check filter.
+
+## Follow-up — report PDF stall on the Google Fonts import (OPEN, 2026-11-04)
+
+See the spec's "Follow-up — report PDF stalls two minutes". Root cause and
+timings confirmed with wkhtmltopdf probes on this bench. Code unchanged.
+
+- [ ] Strip `@import` rules in `get_report_theme_css`, with a test.
+- [ ] Add `127.0.0.1 akw.localhost` to `/etc/hosts` on dev machines (sudo).
+- [ ] Decide on Rubik: install on PDF servers and drop the import, or drop
+      Rubik from the report theme.

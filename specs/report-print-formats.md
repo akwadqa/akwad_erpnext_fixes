@@ -34,8 +34,9 @@ real, confirmed constraint discovered by actually shipping it — not a guess.
   namespace:
   - `public/js/report_print_style.bundle.js` — template-rendering helpers
     used inside a Print Format's own `html`: `get_style_tag()`,
-    `build_header()`, `render_rows()` (depth-first, flat-or-nested),
-    `strip_prefix()`, `footer()`, `letterhead_footer()`,
+    `build_header()` (title block + filter strip), `render_filter_strip()`,
+    `render_rows()` (depth-first, flat-or-nested), `footer()`,
+    `letterhead_footer()`,
     `get_extra_columns()` / `render_extra_headers()` /
     `render_extra_cells()` (generic optional-column rendering — see
     Future Plan). Every report print format calls into this instead of
@@ -63,7 +64,7 @@ real, confirmed constraint discovered by actually shipping it — not a guess.
   that appears when the checkboxes diverge from the selected template's
   saved fields. Selecting a template auto-checks its fields; the user may
   tweak per print run. A report is enabled by its presence in
-  `EXCLUDED_COLUMNS_BY_REPORT` (boot-injected), which also filters the
+  `PRINT_COLUMNS_BY_REPORT` (boot-injected), which also filters the
   pickable columns. Superseded the second-dialog radio picker with live
   iframe preview (Phase 4), which superseded the per-column-checkbox
   dialog (Phase 3), which superseded the admin-config-only `Report Print
@@ -105,7 +106,11 @@ These constrain every future report print format in this app:
    / Lesson 10.
 7. **Report PDF generation always goes through wkhtmltopdf**
    (`frappe.utils.print_format.report_to_pdf`), never chrome/weasyprint.
-   CSS must avoid Grid (unreliable support); use flexbox.
+   Still true in v16: `report_to_pdf` calls `get_pdf` directly, and the
+   Print Format's `pdf_generator = chrome` field is ignored for reports.
+   CSS must avoid Grid. *Amended in Phase 8:* the original advice "use
+   flexbox" was wrong for this engine. See Lesson 16 for what it
+   supports.
 8. **Letterhead header is automatic** (rendered by `akwad_frappe_fixes`'s
    global print-page wrapper). **Letterhead footer is a real gap in
    Frappe core** for the Report-print flow — fetched into
@@ -119,7 +124,7 @@ These constrain every future report print format in this app:
    filter, a deliberately separate axis from `Report Print Template` (see
    Decisions) — it must never be offered as a template column, or it'd
    render twice with no runtime check stopping it. Fixed by one shared
-   exclusion list (`EXCLUDED_COLUMNS_BY_REPORT` in
+   exclusion list (`PRINT_COLUMNS_BY_REPORT` in
    `report_print_template.py`) consulted by the Autocomplete query that
    populates the child table's `field` picker. (The exact same fix,
    applied against the same risk, twice now: first in the deleted `Report
@@ -210,6 +215,38 @@ These constrain every future report print format in this app:
     prompt callback (`values.extra_columns = values.extra_columns || []`)
     before core's `$.extend` runs, or a previous run's choice leaks into
     the next.
+16. **wkhtmltopdf 0.12.6.1 (this bench) ignores CSS custom properties
+    and modern flexbox.** Confirmed by a probe page rendered with
+    `wkhtmltoimage` on 2026-11-03: `var(--x)` in a border or color is
+    dropped (the rule falls back as if unset), `display: flex` and
+    `display: -webkit-flex` lay children out as blocks, and only the
+    2009 `display: -webkit-box` syntax places children side by side.
+    `gap` and `font-variant-numeric` are also ignored. Also,
+    `report_to_pdf` pins wkhtmltopdf to a dead proxy and bypasses it only
+    for the site's own hosts (`_pdf_bypass_proxy_hosts`), so an
+    `@import` from Google Fonts never loads in a PDF. The browser print
+    window shows none of this, so "Print looks right, PDF does not" is
+    the expected symptom. Every `.akwad-report` rule must use literal
+    colors, `-webkit-box` or tables for row layout, and no external
+    font import.
+17. **A Print Style reaches report output only through
+    `frappe.boot.print_css`, and only when it is the one selected in
+    Print Settings.** `boot.py: load_print_css` calls
+    `printview.get_print_style(print_settings.print_style)`, which
+    renders core's `standard.css` with the Print Settings font and font
+    size and appends that one Print Style's CSS. Core injects the
+    result into the `<head>` of both the print window
+    (`microtemplate.js: render_grid`) and the PDF HTML
+    (`query_report.js: pdf_report` → `print_template.html`). Nothing
+    reads any other Print Style. Two consequences: a Print Style that
+    is not selected is inert data, and a `<style>` block emitted inside
+    the format body comes later in the document, so at equal
+    specificity it overrides the selected style. Also, `frappe.boot` is
+    cached in Redis per user (`sessions.py: get`) and
+    `PrintStyle.on_update` does not clear that cache (only
+    `PrintSettings.on_update` calls `frappe.clear_cache()`), so an
+    edited Print Style does not show until the cache is cleared and the
+    browser is reloaded (Lesson 2).
 
 ## Future Plan
 
@@ -244,7 +281,7 @@ only *what feeds* `print_settings.extra_columns` changed again.
 report — a report can have several), `report` + `template_name`, child
 table `Report Print Template Column` (`field` Autocomplete, same
 run-the-report-to-get-columns mechanism as the deleted `Report Print
-Configuration`, see `get_report_columns`/`EXCLUDED_COLUMNS_BY_REPORT` in
+Configuration`, see `get_report_columns`/`PRINT_COLUMNS_BY_REPORT` in
 `report_print_template.py`). `get_report_print_templates(report)`
 (whitelisted) returns an implicit "Default" entry (no extra columns) plus
 every configured template, each with its resolved fieldname list.
@@ -281,7 +318,7 @@ one-off tweaked print). Selecting a template fetches its fields
 (`get_template_columns`) and auto-checks them — compared and applied
 over the currently-available columns only, since a template may
 reference a column the current run was filtered without. Enablement and
-column filtering both come from `EXCLUDED_COLUMNS_BY_REPORT`, boot
+column filtering both come from `PRINT_COLUMNS_BY_REPORT`, boot
 -injected as a static dict (`boot.akwad_report_print_columns`): a report
 is enabled by having a key there, so report #N costs one Python entry
 plus its Print Format fixture.
@@ -335,7 +372,7 @@ a live look at the dialog. No new doctypes; no fieldtype changes.
    double-rendered server-side (the exact failure mode Lesson 9 already
    named once). Instead: a separate, purely visual list styled to match
    the checkboxes (grayed, pre-"checked"), built from
-   `EXCLUDED_COLUMNS_BY_REPORT` ∩ the current run's visible columns, never
+   `PRINT_COLUMNS_BY_REPORT` ∩ the current run's visible columns, never
    part of the real MultiCheck options or value.
 4. **"Create New Template" button** in the Columns section: shown when no
    template is selected (`report_print_template` empty) but at least one
@@ -361,10 +398,272 @@ a live look at the dialog. No new doctypes; no fieldtype changes.
    not look like controls. The Lesson 9 separation from the MultiCheck
    stays.
 
+### Phase 8 — Theme ownership, PDF fidelity, filters, dialog accuracy (code done — see progress.md; live PDF check pending)
+
+Four problems reported after a live look at the General Ledger print on
+2026-11-03, plus one question. The root causes below come from reading
+core and from the wkhtmltopdf probe (Lesson 16), not from a live
+reproduction. Step 0 of the phase is to reproduce each item on
+`akw.localhost` before changing code.
+
+1. **The "Always included" line lists the wrong columns.**
+   Root cause: `render_static_columns()` builds the line from
+   `PRINT_COLUMNS_BY_REPORT` ∩ the run's visible columns. That
+   registry answers a different question: which report fieldnames the
+   format *consumes*, so that they are not offered as optional columns
+   (Lesson 9). For General Ledger it holds eleven fieldnames, so the line
+   reads "Posting Date, Account, Debit (QAR), Credit (QAR), Balance
+   (QAR), Voucher Type, Voucher No, Against Account, Party, Supplier
+   Invoice No, Remarks". The printed table has six columns: Date,
+   Particulars, Party, Debit, Credit, Balance. `voucher_type`,
+   `voucher_no`, `account` and `bill_no` are merged into Particulars,
+   `against` is a fallback for Party, and `remarks` is a seventh column
+   only while the report's own `show_remarks` filter is on. One list
+   cannot serve both purposes.
+   Fix: give each registry entry a second, explicit list, the printed
+   column labels in print order, and build the line from that. Proposed
+   shape: `{"General Ledger": {"excluded_fieldnames": [...],
+   "printed_columns": ["Date", "Particulars", "Party", "Debit",
+   "Credit", "Balance"]}}`, still one entry per report and still
+   boot-injected under `boot.akwad_report_print_columns` (the JS and the
+   boot test adapt to the new shape). Labels are English strings
+   translated client-side with `__()`. The print format uses the same
+   strings, so the dialog and the paper match. Remarks is not listed:
+   the report's own filter governs it and the user sees that filter on
+   the report page. The Lesson 9 separation from the MultiCheck is
+   unchanged.
+
+2. **Editing `Akwad Print Style` changes nothing on paper.** Two
+   confirmed causes, both in current code.
+   (a) The Print Style is never read. `report_print_style.bundle.js`
+   carries its own copy of the same `.akwad-report` rules in `ns.CSS`,
+   and `get_style_tag()` writes that copy into the format body. The two
+   copies already drift: `.akwad-letterhead-footer` exists in the bundle
+   only. Per Lesson 17, the only path from a Print Style to any print
+   output is `frappe.boot.print_css`, and only for the style selected in
+   Print Settings. So the user's reading is correct: `Akwad Print Style`
+   is inert unless selected, and even when selected, the bundle's
+   in-body copy comes later in the document at equal specificity and
+   wins every rule. Item 5 fixes this.
+   (b) Saving a Print Style does not clear the cached `frappe.boot`
+   (Lesson 17). Fix: a `doc_events` hook on `Print Style.on_update` that
+   calls `frappe.clear_cache()` when the saved style is the selected
+   one. A supported hook, no monkey patch, and it also fixes the same
+   stale-boot problem for core's own styles on this site. Python
+   regression test: save the selected style, assert the bootinfo cache
+   key is gone.
+
+3. **PDF output loses most of the styling.** Root cause: Lesson 16.
+   Everything that carries the design in the current CSS is a feature
+   wkhtmltopdf drops. `var(--akwad-accent)` on the table header borders,
+   the filter box border and labels, and the closing row borders.
+   `display: flex` plus `gap` on `.akwad-report-header` and
+   `.akwad-report-filters`, so company/period and the filter rows stack
+   vertically. The Rubik `@import`, so the font falls back. The browser
+   print window renders all of it, which is why Print looks right and
+   PDF does not.
+   Fix: write the CSS for wkhtmltopdf, the lowest common denominator.
+   Literal colors instead of `var()`. `display: -webkit-box` or a plain
+   two-cell table for the header and filter rows, no `gap`. No
+   `font-variant-numeric`. No external `@import`: the font comes from
+   Print Settings (item 5). Verification is a real PDF downloaded from
+   `akw.localhost`, not the print window.
+
+4. **"Include filters" should behave like core.** Core builds
+   `filters_html` in `get_filters_html_for_print()`: one `.filter-row`
+   per applied filter, with empty values and `hidden_due_to_dependency`
+   filters skipped, labels from the filter's DocField, values through
+   `frappe.format(..., {for_print: true})`, and Check filters as Yes/No.
+   It passes that HTML to the template as `subtitle` only when the
+   dialog's "Include filters" box is checked, in both `print_report` and
+   `pdf_report`. `print_grid.html` renders `{{ subtitle }}` under the
+   title. Our template ignores `subtitle` and renders its own
+   hand-picked `meta` list on every print, so the checkbox does nothing
+   for our formats.
+   Fix: `build_header()` takes `filters_html`, the template passes
+   `subtitle`, and the helper renders it inside `.akwad-report-filters`
+   when non-empty. The `meta` option and the General Ledger `meta` list
+   are removed: core's list is the record of what was applied, and
+   keeping both would print the same filter twice. Core's row markup
+   (`<div class="filter-row"><strong>Label:</strong> value</div>`)
+   already uses the class our CSS styles, so the box keeps its look.
+   Company and Period stay in the title header on every print: they
+   identify the statement, and they also appear in the filter list when
+   the box is checked, same as core. Trade-off accepted: the Phase 0
+   curation that hid flags such as "Include Dimensions" is gone. A
+   checked flag prints as "Yes" and an unchecked one as "No", exactly as
+   core prints it. If that is unwanted later, the fix is a per-report
+   skip list in the registry, not a return to `meta`.
+
+5. **Take colors and fonts from the Print Style selected in Print
+   Settings.** Yes. It is the design core already has (Lesson 17): the
+   selected Print Style, the Print Settings font and the font size all
+   reach every report print and PDF through `print_css`. Decision for
+   this phase, recommended and pending the user's confirmation:
+   - The Print Style selected in Print Settings owns the theme: font
+     family, colors, backgrounds, accent borders. `Akwad Print Style`
+     becomes the shipped default theme for `.akwad-report` and must be
+     *selected* in Print Settings to apply. It stays a seeded doc:
+     `create_print_style.py` seeds it, the admin owns it after that.
+   - The bundle owns structure only: table layout, column widths,
+     alignment, indents, page-break rules, nowrap. No color, no
+     font-family, no font-size in `ns.CSS`. With another Print Style
+     selected (Redesign, Classic) the table stays readable in core's
+     default look and has no Akwad accent.
+   - Because of Lesson 16, every `.akwad-report` rule in the Print Style
+     uses the literal accent color. `--akwad-accent` stays for the
+     `.pf-*` DocType formats only.
+   - The duplicate `.akwad-report` rules leave `ns.CSS`. `get_style_tag()`
+     emits only the structural rules. One owner for the theme, which is
+     what item 2 was missing.
+
+   Superseded in part on 2026-11-04: the format embeds `Akwad Print Style`
+   from boot, so selecting it in Print Settings is no longer required (see
+   progress.md, Phase 8 follow-up).
+
+   Item 5 was implemented as recommended; the user confirmed it by
+   asking for implementation of the planned phase.
+
+   Order of work (tracer bullet): item 5 on General Ledger first (move
+   the theme into the Print Style, select it, verify Print and PDF), item
+   3 inside the same CSS rewrite, then items 4, 1 and 2b. Each item ships
+   with a regression test (the JS harness for items 1 and 4, Python for
+   2b), a temp-revert check, and a live check on `akw.localhost` with a
+   real PDF.
+
+### Phase 9 — Look: option E "Classic Masar Mix" (code done, 2026-11-04; live check pending)
+
+Five looks for the report print format were mocked up as A4 artboards on
+the design canvas https://claude.ai/artifact/2BqXHuZYY7ori4DXF2HprY
+(title "Report Print Looks"), each with the same General Ledger sample
+data, letterhead placeholder and an accent color control:
+
+- **A · Ledger Classic** — serif, monochrome, filters as a two-column
+  key/value table. Timeless and perfect in grayscale; least brand presence.
+- **B · Akwad Corporate** — accent band header, filled table header,
+  filters as wrapped chips. Branded and scannable; most ink, chips wrap
+  unevenly with long values.
+- **C · Masar Ink & Signal** — the Masar workspace look: Rubik, near-black
+  ink, Signal Blue, soft grey cards with 8px corners, filter chips with on
+  and off tints, KPI strip, solid black closing row. App-like and fresh;
+  needs Rubik installed on the server for PDFs.
+- **D · Compact Register** — dense operational type, filters as one run-in
+  strip with Yes/No flags collapsed into an Options line. Most rows per
+  page; tiring for long reads.
+- **E · Classic Masar Mix** — A's centred title block and ruled table, D's
+  one-line filter strip with the Yes/No flags as on and off pills, all in
+  C's Rubik, Masar greys and 4px radii. Accent on title, rules and closing
+  balance.
+
+**Decision (user, 2026-11-04): option E.** It is the shipped look for every
+`.akwad-report` format. The split from Phase 8 item 5 stands: the Print
+Style owns colors, fonts, borders and backgrounds; the bundle owns the
+box model, alignment and type sizes.
+
+What E changes in the implementation:
+
+1. **Title block.** `build_header()` renders one centred block with the
+   title, the company line and the period line, ruled above and below in
+   the accent color. The two-cell company/period table is gone. The General
+   Ledger period line adds "Amounts in <currency>" when a presentation
+   currency is set.
+2. **Filter strip.** `render_filter_strip()` takes core's `filters_html`
+   (Phase 8 item 4 is unchanged: the "Include filters" box still governs
+   it) and re-lays it out: value filters become one run-in line of
+   "Label value" pairs separated by a middle dot; filters whose value is
+   `__("Yes")` or `__("No")` (core prints Check filters that way) move to
+   an "Options" line as pills, tinted for Yes and plain for No. The row
+   shape is parsed from core's fixed markup (`<div class="filter-row">
+   <strong>Label:</strong> value</div>`); if no row matches, the HTML is
+   placed in the strip untouched, so a core change degrades to the Phase 8
+   look rather than to nothing. A Select filter whose value is literally
+   Yes or No is treated as a flag too; that is the intended reading.
+3. **Table.** Uppercase, letter-spaced header in the accent color with
+   1px accent rules; 1px light rules between rows; the date cell muted;
+   the opening row italic and muted (`akwad-row-opening`, new); the total
+   row with a dark top rule; the closing row with an accent top rule, a
+   double accent bottom rule and the balance cell in the accent color.
+   Voucher number and account print as muted sub-lines under the voucher
+   type. The spacer row has its own class (`akwad-row-spacer`) so the
+   theme can drop its rule.
+4. **Cell padding is `!important`** in the bundle. The embedded Print
+   Style carries `.print-format td, th { padding: 2px 4px !important }`
+   for the DocType formats (the "Known" note of the Phase 8 follow-up), and
+   that rule won over the report padding. Higher specificity plus
+   `!important` on the report cells restores the 6px padding without
+   touching the DocType rule.
+5. **Font.** `.akwad-report` asks for Rubik, then "Helvetica Neue", Arial,
+   sans-serif. Rubik is not installed on this bench (`fc-list` finds none)
+   and Lesson 16 rules out the Google Fonts import for PDFs, so PDFs fall
+   back to the next family until the font is installed on the server. The
+   browser print window shows Rubik where the Print Style's existing
+   `@import` loads it.
+
+Tests: node 7/7 (`report_print_bundles.test.js`: title block, pills and
+inline rows, unknown-markup fallback, empty filters, color-free structure,
+theme embedding, dialog line) and Python 15/15. Temp-revert check: with
+flag detection returning false, the pills test fails. The accent test in
+`test_print_style.py` now asserts the 1px rule E uses.
+
+Deployed on `akw.localhost`: `create_print_style` re-executed by hand (no
+new patch, per the Phase 8 follow-up decision), `bench migrate` synced the
+fixture (`modified` 2026-11-04 12:00), assets rebuilt with Node 24, cache
+cleared. Not done: the Desk print and the real PDF download. The test
+site's recorded logins no longer work, so the live check needs a working
+session (see progress.md).
+
+### Follow-up — report PDF stalls two minutes on the Google Fonts import (found 2026-11-04, not fixed)
+
+Symptom: a General Ledger PDF with `General Ledger - Default` chosen takes
+about two minutes even for an empty ledger. The same PDF with no Print
+Format chosen takes under a second.
+
+Cause: the Akwad Print Style CSS starts with an `@import` of Rubik from
+Google Fonts. Since the Phase 8 follow-up, `get_style_tag()` embeds the
+whole style CSS into every report print body, so every report PDF carries
+the import. `report_to_pdf` pins wkhtmltopdf to the dead proxy
+`http://0.0.0.0:0` (Lesson 16). Qt does not fail fast on that proxy. It
+waits for its own timeout, about 120 seconds, before `load-error-handling:
+ignore` lets the render continue. Before the follow-up the same stall
+happened whenever Akwad Print Style was the selected style, through core's
+`print_css`. Core's own grid never carries the import, which is why it is
+fast.
+
+Measured on this bench with wkhtmltopdf 0.12.6.1 and the report path's
+options:
+
+| Page | Time |
+|---|---|
+| Bare page | 0.4 s |
+| Plus the site print CSS over loopback | 0.7 s |
+| Plus the Google Fonts `@import`, through the proxy pin | 2 min 0 s |
+| Same `@import` without the proxy pin (DocType PDF path) | 1.5 s |
+
+Cost model: the browser builds the HTML, the server writes an Access Log
+row with that HTML, runs wkhtmltopdf as a synchronous subprocess and
+streams the bytes back. Work grows linearly with pages. The gunicorn
+worker is blocked for the whole render, and production gunicorn kills a
+request at 120 seconds by default, so the stall can surface as a failure
+after two minutes and holds one worker per attempt. Extra columns and
+templates add cells only, nothing the engine fetches.
+
+Dev-only extra: `akw.localhost` is not in `/etc/hosts`, so the server
+side takes 10 seconds to resolve it. wkhtmltopdf fetches the print CSS
+and the letterhead logo from that host, so each fetch adds 10 seconds on
+this machine. Add `127.0.0.1 akw.localhost` to `/etc/hosts` to remove it.
+Real domains resolve through DNS and do not have this problem.
+
+Fix to make: strip `@import` rules from the theme CSS when boot embeds it
+(`get_report_theme_css`), with a Python test that fails without the strip.
+The import can never load in a report PDF, so nothing is lost. The DocType
+formats keep their import and still pay the network fetch per PDF. The
+long-term answer is Rubik installed on each PDF server and no import in
+any Print Style, which also closes the Phase 9 font gap.
+
 ### Next
 
 - Second report (candidate: Trial Balance) to prove the registry gate and
-  `EXCLUDED_COLUMNS_BY_REPORT` actually generalize across reports, not
+  `PRINT_COLUMNS_BY_REPORT` actually generalize across reports, not
   just General Ledger.
 - Mass rollout to (almost) all native reports is the stated goal. Open
   question for that scale: does hand-authoring each report's exclusion
@@ -381,6 +680,9 @@ a live look at the dialog. No new doctypes; no fieldtype changes.
 - All implementation restricted to `akwad_erpnext_fixes` for ERPNext
   reports; no runtime dependency on `akwad_frappe_fixes`.
 - No QR codes or signature blocks on report print formats.
+- The report look is option E "Classic Masar Mix" from the design canvas
+  (Phase 9, 2026-11-04). Options A–D were considered and are recorded
+  there; a new look is a new canvas round, not a tweak of the theme CSS.
 - Exactly one Print Format per report, always — column variation is never
   solved by adding a second (or Nth) named Print Format. Ruled out
   explicitly; don't re-propose without new information.
@@ -406,7 +708,7 @@ a live look at the dialog. No new doctypes; no fieldtype changes.
   the choice inside the native dialog. The 3-caller blast radius concern
   is answered by gating: non-enabled contexts call the untouched original.
 - Static/excluded-per-report columns live in one shared Python registry
-  (`EXCLUDED_COLUMNS_BY_REPORT` in `report_print_template.py`), not
+  (`PRINT_COLUMNS_BY_REPORT` in `report_print_template.py`), not
   duplicated per call site — a single source of truth that's cheap to
   extend for the next report. Since Phase 5 it is also the *enablement*
   gate (a report with a key there gets the dialog section; the
