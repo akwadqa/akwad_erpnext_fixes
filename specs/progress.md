@@ -649,3 +649,15 @@ timings confirmed with wkhtmltopdf probes on this bench. Code unchanged.
 - [ ] Add `127.0.0.1 akw.localhost` to `/etc/hosts` on dev machines (sudo).
 - [ ] Decide on Rubik: install on PDF servers and drop the import, or drop
       Rubik from the report theme.
+
+## Fix — letterhead footer printed twice (2026-11-04)
+
+Cause: Print Settings `repeat_header_footer` was on, so core's print
+template rendered the Letter Head footer and `letterhead_footer()` added a
+second copy (spec Lesson 8, amended).
+
+- [x] `letterhead_footer()` returns "" when `repeat_header_footer` is set.
+- [x] Node test added; failed before the fix, node 8/8 after.
+- [ ] Not done: `bench build`, cache clear and a live Print/PDF check.
+- [x] Title block top margin 4px (was 0) so the title is not flush against
+      the letterhead. Structural CSS in the bundle; node test added (9/9).

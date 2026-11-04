@@ -80,3 +80,15 @@ test("always-included line uses printed_columns, not excluded fieldnames", () =>
 	assert.deepStrictEqual(picker.static_column_labels, ["Date", "Particulars", "Debit"]);
 	assert.deepStrictEqual(picker.column_options.map((o) => o.value), ["cost_center"]);
 });
+
+test("letterhead_footer is skipped when core already renders it (repeat_header_footer)", () => {
+	const ns = load("report_print_style.bundle.js");
+	const settings = { with_letter_head: 1, letter_head: { footer: "F" } };
+	assert.match(ns.letterhead_footer(settings), /akwad-letterhead-footer">F</);
+	assert.strictEqual(ns.letterhead_footer({ ...settings, repeat_header_footer: 1 }), "");
+});
+
+test("title block keeps a small gap below the letterhead", () => {
+	const ns = load("report_print_style.bundle.js");
+	assert.match(ns.CSS, /\.akwad-report-title \{[^}]*margin: 4px 0 16px/);
+});

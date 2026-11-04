@@ -117,7 +117,11 @@ These constrain every future report print format in this app:
    `print_settings.letter_head.footer` but never rendered anywhere, since
    the wrapper's footer block is gated behind `repeat_header_footer`,
    which the Report print dialog never sets. We render it ourselves via
-   `letterhead_footer()`.
+   `letterhead_footer()`. *Amended 2026-11-04:* the gate is a Print
+   Settings value, not something the dialog controls. `akw.localhost` has
+   `repeat_header_footer = 1`, so core renders the footer and ours made a
+   second copy. `letterhead_footer()` now returns nothing when
+   `print_settings.repeat_header_footer` is set.
 9. **A pickable column that's already rendered elsewhere silently
    double-renders instead of erroring.** General Ledger's `remarks`
    column is rendered via the report's own interactive `show_remarks`

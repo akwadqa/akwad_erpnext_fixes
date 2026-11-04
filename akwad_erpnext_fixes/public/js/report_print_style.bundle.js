@@ -16,7 +16,7 @@ frappe.provide("frappe.akwad_report");
 .akwad-report .akwad-report-title {
 	text-align: center;
 	padding: 12px 0 10px;
-	margin: 0 0 16px;
+	margin: 4px 0 16px;
 }
 
 .akwad-report .akwad-report-title h2 {
@@ -269,9 +269,11 @@ frappe.provide("frappe.akwad_report");
 		);
 	};
 
-	// Letter Head footer
+	// Core's print template renders the Letter Head footer itself when
+	// repeat_header_footer is on; rendering it here too would print it twice.
 	ns.letterhead_footer = function (print_settings) {
 		if (!print_settings || !print_settings.with_letter_head) return "";
+		if (print_settings.repeat_header_footer) return "";
 		var footer = print_settings.letter_head && print_settings.letter_head.footer;
 		if (!footer) return "";
 		return '<div class="akwad-letterhead-footer">' + footer + "</div>";
