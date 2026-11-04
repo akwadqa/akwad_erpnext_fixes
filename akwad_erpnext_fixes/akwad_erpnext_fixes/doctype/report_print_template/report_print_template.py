@@ -46,17 +46,23 @@ def report_query(doctype, txt, searchfield, start, page_len, filters):
 	)
 
 
-# Fieldnames each report's print format always renders itself, or handles via interactive filter
-EXCLUDED_COLUMNS_BY_REPORT = {
-	"General Ledger": [
-		"posting_date", "voucher_type", "voucher_no", "account", "bill_no",
-		"party", "against", "remarks", "debit", "credit", "balance",
-	],
+# Per report: `excluded_fieldnames` are report fields the print format consumes
+# itself (never offered as optional columns); `printed_columns` are the labels
+# of the table columns it prints, in order, for the dialog's "Always included"
+# line. Remarks is absent: the report's own show_remarks filter governs it.
+PRINT_COLUMNS_BY_REPORT = {
+	"General Ledger": {
+		"excluded_fieldnames": [
+			"posting_date", "voucher_type", "voucher_no", "account", "bill_no",
+			"party", "against", "remarks", "debit", "credit", "balance",
+		],
+		"printed_columns": ["Date", "Particulars", "Party", "Debit", "Credit", "Balance"],
+	},
 }
 
 
 def get_excluded_fieldnames(report):
-	return EXCLUDED_COLUMNS_BY_REPORT.get(report, [])
+	return PRINT_COLUMNS_BY_REPORT.get(report, {}).get("excluded_fieldnames", [])
 
 
 def get_report_columns(report):

@@ -155,6 +155,10 @@ after_install = "akwad_erpnext_fixes.setup.after_install"
 # ---------------
 # Hook on document methods and events
 
+doc_events = {
+	"Print Style": {"on_update": "akwad_erpnext_fixes.print_style.clear_boot_cache_if_selected"},
+}
+
 # doc_events = {
 # 	"*": {
 # 		"on_update": "method",

@@ -5,7 +5,7 @@ import frappe
 from frappe.tests import IntegrationTestCase
 
 from akwad_erpnext_fixes.akwad_erpnext_fixes.doctype.report_print_template.report_print_template import (
-	EXCLUDED_COLUMNS_BY_REPORT,
+	PRINT_COLUMNS_BY_REPORT,
 	create_template,
 	get_report_columns_query,
 	get_template_columns,
@@ -101,5 +101,5 @@ class IntegrationTestReportPrintTemplate(IntegrationTestCase):
 		from akwad_erpnext_fixes.boot import boot_session
 		boot_session(bootinfo)
 
-		self.assertIs(bootinfo.akwad_report_print_columns, EXCLUDED_COLUMNS_BY_REPORT)
+		self.assertIs(bootinfo.akwad_report_print_columns, PRINT_COLUMNS_BY_REPORT)
 		self.assertIn("General Ledger", bootinfo.akwad_report_print_columns)
