@@ -22,16 +22,32 @@ function load(bundle, frappe_overrides = {}) {
 	return frappe.akwad_report;
 }
 
-test("build_header renders core's filters_html and no duplicate meta list", () => {
+const CORE_ROWS =
+	'<div class="filter-row">\n\t<strong>Company:</strong> Acme\n</div>' +
+	'<div class="filter-row">\n\t<strong>Include Dimensions:</strong> Yes\n</div>' +
+	'<div class="filter-row">\n\t<strong>Show Remarks:</strong> No\n</div>';
+
+test("build_header renders a centred title block with company and period", () => {
 	const ns = load("report_print_style.bundle.js");
-	const html = ns.build_header({
-		title: "T",
-		company: "Acme",
-		period: "a to b",
-		filters_html: '<div class="filter-row">X</div>',
-	});
-	assert.match(html, /akwad-report-filters[^>]*><div class="filter-row">X<\/div>/);
-	assert.match(html, /Acme/);
+	const html = ns.build_header({ title: "T", company: "Acme", period: "a to b" });
+	assert.match(html, /akwad-report-title"><h2>T<\/h2><div class="akwad-report-company">Acme<\/div><div class="akwad-report-period">a to b<\/div>/);
+	assert.doesNotMatch(html, /akwad-report-filters/);
+});
+
+test("filter strip keeps value filters inline and turns Yes/No filters into on/off pills", () => {
+	const ns = load("report_print_style.bundle.js");
+	const html = ns.build_header({ title: "T", filters_html: CORE_ROWS });
+	assert.match(html, /<span class="filter-row"><strong>Company<\/strong>Acme<\/span>/);
+	assert.match(html, /akwad-report-options"><strong>Options<\/strong>/);
+	assert.match(html, /<span class="akwad-pill akwad-pill-on">Include Dimensions<\/span>/);
+	assert.match(html, /<span class="akwad-pill">Show Remarks<\/span>/);
+	assert.doesNotMatch(html, /Yes|No</);
+});
+
+test("filter strip falls back to core's markup when the row shape is unknown", () => {
+	const ns = load("report_print_style.bundle.js");
+	const html = ns.build_header({ title: "T", filters_html: '<p class="filter-row">X</p>' });
+	assert.match(html, /akwad-report-filters"><p class="filter-row">X<\/p>/);
 });
 
 test("build_header omits the filter box when filters_html is empty", () => {

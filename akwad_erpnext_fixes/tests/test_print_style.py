@@ -53,7 +53,7 @@ class IntegrationTestPrintStyleCache(IntegrationTestCase):
 	def test_boot_theme_uses_custom_color_as_accent(self):
 		css = self.get_boot_theme_css_with_color("#aa0000")
 
-		self.assertIn("border-top: 2px solid #aa0000", css)
+		self.assertIn("border-top: 1px solid #aa0000", css)
 		self.assertNotIn(DEFAULT_ACCENT, css)
 
 	def test_boot_theme_keeps_default_accent_without_custom_color(self):
@@ -64,4 +64,3 @@ class IntegrationTestPrintStyleCache(IntegrationTestCase):
 
 		self.assertIn(DEFAULT_ACCENT, css)
 		self.assertNotIn("<script>", css)
-

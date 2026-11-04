@@ -54,62 +54,91 @@ def execute():
 				margin-top: 100px;
 			}
 
-			/* Report theme. Literal colors only: wkhtmltopdf (PDF) ignores var(). */
+			/* Report theme ("Classic Masar Mix", spec Phase 9). Literal colors
+			   only: wkhtmltopdf (PDF) ignores var(). Rubik is not installed on the
+			   PDF server, so PDFs fall back to the next family. */
 			.akwad-report {
-				font-family: "Rubik", "Inter", sans-serif;
+				font-family: "Rubik", "Helvetica Neue", Arial, sans-serif;
 				font-size: 12px;
-				color: #171717;
+				line-height: 1.45;
+				color: #202020;
+			}
+
+			.akwad-report .akwad-report-title {
+				border-top: 1px solid #00589c;
+				border-bottom: 1px solid #00589c;
 			}
 
 			.akwad-report .akwad-report-title h2 {
-				letter-spacing: 0.5px;
+				color: #00589c;
 			}
 
-			.akwad-report strong {
-				color: #7c7c7c;
-				font-weight: 500;
+			.akwad-report .akwad-report-period,
+			.akwad-report .akwad-report-filters strong,
+			.akwad-report .akwad-cell-date,
+			.akwad-report .akwad-row-opening td,
+			.akwad-report .text-muted,
+			.akwad-report .akwad-report-footer,
+			.akwad-report .akwad-letterhead-footer {
+				color: #646464;
 			}
 
 			.akwad-report .akwad-report-filters {
-				background: #f8f8f8;
-				border-left: 3px solid #00589c;
+				background: #f8f9fa;
+				border: 1px solid #e8e8e8;
+				border-radius: 8px;
+			}
+
+			.akwad-report .akwad-report-filters .filter-row + .filter-row:before {
+				color: #a3a3a3;
+			}
+
+			.akwad-report .akwad-pill {
+				background: #ffffff;
+				border: 1px solid #e8e8e8;
+				border-radius: 4px;
+				color: #646464;
+			}
+
+			.akwad-report .akwad-pill-on {
+				background: #eef8ff;
+				border-color: #bce2ff;
+				color: #00589c;
 			}
 
 			.akwad-report table.akwad-report-table thead th {
-				background: #f0f0f0;
-				border-top: 2px solid #00589c;
-				border-bottom: 2px solid #00589c;
+				color: #00589c;
+				border-top: 1px solid #00589c;
+				border-bottom: 1px solid #00589c;
 			}
 
 			.akwad-report table.akwad-report-table tbody td {
-				border-bottom: 1px solid #ededed;
+				border-bottom: 1px solid #e8e8e8;
 			}
 
-			.akwad-report table.akwad-report-table tbody tr:last-child td {
+			.akwad-report .akwad-row-spacer td {
 				border-bottom: none;
 			}
 
 			.akwad-report .akwad-row-group td {
-				background: #fafafa;
+				background: #f8f9fa;
 			}
 
 			.akwad-report .akwad-row-total td {
-				border-top: 1px solid #171717;
+				border-top: 1px solid #202020;
 			}
 
 			.akwad-report .akwad-row-closing td {
-				border-top: 2px solid #00589c;
+				border-top: 1px solid #00589c;
 				border-bottom: 3px double #00589c;
 			}
 
-			.akwad-report .text-muted,
-			.akwad-report .akwad-report-footer {
-				color: #7c7c7c;
+			.akwad-report .akwad-row-closing td:last-child {
+				color: #00589c;
 			}
 
 			.akwad-report .akwad-letterhead-footer {
-				border-top: 1px solid #ededed;
-				color: #171717;
+				border-top: 1px solid #e8e8e8;
 			}
 		"""
 
