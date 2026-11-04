@@ -6,14 +6,11 @@
 frappe.provide("frappe.akwad_report");
 
 (function (ns) {
+	// Structure only. Colors and fonts belong to Akwad Print Style, which
+	// get_style_tag() embeds from boot, so the Print Style selected in Print
+	// Settings does not matter. wkhtmltopdf 0.12.6.1 renders the PDF: no flex,
+	// no gap, no CSS variables (spec Lesson 16).
 	ns.CSS = `
-.akwad-report {
-	--akwad-accent: #00589c;
-	font-family: "Rubik", "Inter", sans-serif;
-	font-size: 12px;
-	color: #171717;
-}
-
 .akwad-report .akwad-report-title {
 	text-align: center;
 	margin: 0 0 10px;
@@ -24,21 +21,18 @@ frappe.provide("frappe.akwad_report");
 	font-size: 20px;
 	font-weight: 600;
 	text-transform: uppercase;
-	letter-spacing: 0.5px;
 }
 
-.akwad-report .akwad-report-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	gap: 12px;
+.akwad-report table.akwad-report-header {
+	width: 100%;
+	border-collapse: collapse;
 	margin: 0 0 10px;
 }
 
-.akwad-report .akwad-report-header .col {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
+.akwad-report table.akwad-report-header td {
+	width: 50%;
+	padding: 0;
+	vertical-align: top;
 }
 
 .akwad-report .filter-row {
@@ -46,40 +40,10 @@ frappe.provide("frappe.akwad_report");
 	line-height: 1.5;
 }
 
-.akwad-report strong {
-	color: #7c7c7c;
-	font-weight: 500;
-}
-
 .akwad-report .akwad-report-filters {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 6px 24px;
 	margin: 0 0 14px;
-	padding: 10px 14px;
-	background: #f8f8f8;
-	border-left: 3px solid var(--akwad-accent);
+	padding: 8px 14px;
 	font-size: 11px;
-}
-
-.akwad-report .akwad-report-filters .filter-row {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 0;
-	min-width: 150px;
-}
-
-.akwad-report .akwad-report-filters strong {
-	color: var(--akwad-accent);
-	font-weight: 600;
-	font-size: 9px;
-	text-transform: uppercase;
-	letter-spacing: 0.4px;
-	margin-bottom: 1px;
-}
-
-.akwad-report .akwad-report-filters span {
-	color: #171717;
 }
 
 .akwad-report table.akwad-report-table {
@@ -89,40 +53,25 @@ frappe.provide("frappe.akwad_report");
 }
 
 .akwad-report table.akwad-report-table thead th {
-	background: #f0f0f0;
 	text-align: center;
 	font-weight: 600;
 	font-size: 11px;
-	border-top: 2px solid var(--akwad-accent);
-	border-bottom: 2px solid var(--akwad-accent);
 	padding: 6px 8px;
 }
 
 .akwad-report table.akwad-report-table tbody td {
 	padding: 5px 8px;
-	border-bottom: 1px solid #ededed;
 	vertical-align: top;
 	word-wrap: break-word;
 }
 
-.akwad-report table.akwad-report-table tbody tr:last-child td {
-	border-bottom: none;
-}
-
-.akwad-report .akwad-row-group td {
-	font-weight: 600;
-	background: #fafafa;
-}
-
+.akwad-report .akwad-row-group td,
 .akwad-report .akwad-row-total td {
 	font-weight: 600;
-	border-top: 1px solid #171717;
 }
 
 .akwad-report .akwad-row-closing td {
 	font-weight: 700;
-	border-top: 2px solid var(--akwad-accent);
-	border-bottom: 3px double var(--akwad-accent);
 }
 
 .akwad-report .akwad-indent-1 { padding-left: 18px !important; }
@@ -131,23 +80,20 @@ frappe.provide("frappe.akwad_report");
 .akwad-report .akwad-indent-4 { padding-left: 72px !important; }
 
 .akwad-report .text-left { text-align: left; }
-.akwad-report .text-right { text-align: right; font-variant-numeric: tabular-nums; }
+.akwad-report .text-right { text-align: right; }
 .akwad-report .text-center { text-align: center; }
-.akwad-report .text-muted { color: #7c7c7c; font-size: 10px; }
+.akwad-report .text-muted { font-size: 10px; }
 
 .akwad-report .akwad-report-footer {
 	margin-top: 10px;
 	font-size: 10px;
-	color: #7c7c7c;
 	text-align: right;
 }
 
 .akwad-report .akwad-letterhead-footer {
 	margin-top: 16px;
 	padding-top: 8px;
-	border-top: 1px solid #ededed;
 	font-size: 11px;
-	color: #171717;
 }
 
 @media print {
@@ -157,71 +103,34 @@ frappe.provide("frappe.akwad_report");
 `;
 
 	ns.get_style_tag = function () {
-		return "<style>" + ns.CSS + "</style>";
+		return "<style>" + ns.CSS + (frappe.boot.akwad_report_theme_css || "") + "</style>";
 	};
 
-	// Drops a leading label prefix from a filter's raw option value
-	ns.strip_prefix = function (value, prefix) {
-		if (!value) return value;
-		var re = new RegExp("^" + prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*", "i");
-		return value.replace(re, "");
-	};
-
-	// MultiSelectList filters return [] rather than "" when unset, and []
-	// is truthy, so plain `m.value` checks let empty filters through.
-	function has_value(value) {
-		return Array.isArray(value) ? value.length > 0 : !!value;
+	function labeled_row(label, value) {
+		return value
+			? '<div class="filter-row"><strong>' +
+					label +
+					":</strong> " +
+					frappe.utils.escape_html(value) +
+					"</div>"
+			: "";
 	}
 
-	function format_value(value) {
-		return Array.isArray(value) ? value.join(", ") : String(value);
-	}
-
+	// `filters_html` is core's own applied-filter list (the print dialog's
+	// "Include filters" box, passed to the template as `subtitle`).
 	ns.build_header = function (opts) {
 		opts = opts || {};
-		var meta = (opts.meta || []).filter(function (m) {
-			return m && has_value(m.value);
-		});
 
-		var meta_html = meta
-			.map(function (m) {
-				return (
-					'<div class="filter-row"><strong>' +
-					frappe.utils.escape_html(m.label) +
-					"</strong><span>" +
-					frappe.utils.escape_html(format_value(m.value)) +
-					"</span></div>"
-				);
-			})
-			.join("");
-
-		var company_html = opts.company
-			? '<div class="filter-row"><strong>' +
-			  __("Company") +
-			  ":</strong> " +
-			  frappe.utils.escape_html(opts.company) +
-			  "</div>"
-			: "";
-
-		var period_html = opts.period
-			? '<div class="filter-row"><strong>' +
-			  __("Period") +
-			  ":</strong> " +
-			  frappe.utils.escape_html(opts.period) +
-			  "</div>"
-			: "";
-
-		var html = "";
-		html += '<div class="akwad-report-title"><h2>' + frappe.utils.escape_html(opts.title || "") + "</h2></div>";
+		var html = '<div class="akwad-report-title"><h2>' + frappe.utils.escape_html(opts.title || "") + "</h2></div>";
 		html +=
-			'<div class="akwad-report-header"><div class="col">' +
-			company_html +
-			'</div><div class="col" style="text-align: right;">' +
-			period_html +
-			"</div></div>";
+			'<table class="akwad-report-header"><tr><td>' +
+			labeled_row(__("Company"), opts.company) +
+			'</td><td style="text-align: right;">' +
+			labeled_row(__("Period"), opts.period) +
+			"</td></tr></table>";
 
-		if (meta_html) {
-			html += '<div class="akwad-report-filters">' + meta_html + "</div>";
+		if (opts.filters_html) {
+			html += '<div class="akwad-report-filters">' + opts.filters_html + "</div>";
 		}
 
 		return html;

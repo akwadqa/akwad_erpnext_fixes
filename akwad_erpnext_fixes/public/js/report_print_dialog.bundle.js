@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 
 // Injects a named-column-template picker into the native report print
-// dialog, for reports registered in EXCLUDED_COLUMNS_BY_REPORT (boot
+// dialog, for reports registered in PRINT_COLUMNS_BY_REPORT (boot
 // -injected). The picker's MultiCheck mirrors core's own Pick Columns
 // visually but uses its own fieldname (`extra_columns`), because core
 // nulls `columns` whenever a Print Format is chosen and force-swaps the
@@ -14,16 +14,17 @@ frappe.provide("frappe.akwad_report");
 		"akwad_erpnext_fixes.akwad_erpnext_fixes.doctype.report_print_template.report_print_template.";
 
 	function get_enabled_report() {
-		var excluded_by_report = frappe.boot.akwad_report_print_columns || {};
+		var config_by_report = frappe.boot.akwad_report_print_columns || {};
 		var route = frappe.get_route();
 		if (!route || route[0] !== "query-report" || !frappe.query_report) return null;
 
 		var report_name = frappe.query_report.report_name;
-		if (!(report_name in excluded_by_report)) return null;
+		if (!(report_name in config_by_report)) return null;
 
 		return {
 			name: report_name,
-			excluded_fieldnames: excluded_by_report[report_name] || [],
+			excluded_fieldnames: config_by_report[report_name].excluded_fieldnames || [],
+			printed_columns: config_by_report[report_name].printed_columns || [],
 		};
 	}
 
@@ -37,17 +38,12 @@ frappe.provide("frappe.akwad_report");
 			.map(function (df) {
 				return { label: __(df.label, null, df.parent), value: df.fieldname };
 			});
-		// Always-rendered columns of this run, shown grayed+checked for context.
-		// Kept out of the MultiCheck entirely: its selected_options ignore the
-		// DOM disabled state, so a "checked" static entry would flow into
-		// extra_columns and double-render (spec Lesson 9).
-		this.static_column_labels = (visible_columns || [])
-			.filter(function (df) {
-				return report.excluded_fieldnames.indexOf(df.fieldname) !== -1;
-			})
-			.map(function (df) {
-				return __(df.label, null, df.parent);
-			});
+		// Labels of what the format always prints. Not derived from the
+		// excluded fieldnames (those include fields merged into one column) and
+		// kept out of the MultiCheck (spec Lesson 9).
+		this.static_column_labels = report.printed_columns.map(function (label) {
+			return __(label);
+		});
 		// The selected template's saved columns; null = no template selected.
 		this.saved_columns = null;
 		this.dialog = null;
