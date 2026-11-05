@@ -134,8 +134,7 @@ frappe.provide("frappe.akwad_report");
 .akwad-report .text-center { text-align: center; }
 .akwad-report .text-muted { font-size: 10.5px; }
 
-.akwad-report .akwad-report-footer {
-	margin-top: 22px;
+.akwad-report .akwad-report-printed-on {
 	font-size: 10.5px;
 	font-weight: 500;
 	text-align: right;
@@ -164,7 +163,9 @@ frappe.provide("frappe.akwad_report");
 	ns.build_header = function (opts) {
 		opts = opts || {};
 
-		var html = '<div class="akwad-report-title"><h2>' + frappe.utils.escape_html(opts.title || "") + "</h2>";
+		// Printed at the top, not after the table: a trailing line can spill
+		// onto a page of its own when the table fills the last page.
+		var html = '<div class="akwad-report-title">' + printed_on_line() + "<h2>" + frappe.utils.escape_html(opts.title || "") + "</h2>";
 		html += labeled_block("akwad-report-company", opts.company);
 		html += labeled_block("akwad-report-period", opts.period);
 		html += "</div>";
@@ -261,14 +262,6 @@ frappe.provide("frappe.akwad_report");
 		return html;
 	};
 
-	ns.footer = function () {
-		return (
-			'<div class="akwad-report-footer">' +
-			__("Printed on {0}", [frappe.datetime.str_to_user(frappe.datetime.get_datetime_as_string())]) +
-			"</div>"
-		);
-	};
-
 	// Core's print template renders the Letter Head footer itself when
 	// repeat_header_footer is on; rendering it here too would print it twice.
 	ns.letterhead_footer = function (print_settings) {
@@ -278,6 +271,11 @@ frappe.provide("frappe.akwad_report");
 		if (!footer) return "";
 		return '<div class="akwad-letterhead-footer">' + footer + "</div>";
 	};
+
+	function printed_on_line() {
+		var now = frappe.datetime.str_to_user(frappe.datetime.get_datetime_as_string());
+		return '<div class="akwad-report-printed-on">' + __("Printed on {0}", [now]) + "</div>";
+	}
 
 	function labeled_block(css_class, value) {
 		return value ? '<div class="' + css_class + '">' + frappe.utils.escape_html(value) + "</div>" : "";

@@ -661,3 +661,18 @@ second copy (spec Lesson 8, amended).
 - [ ] Not done: `bench build`, cache clear and a live Print/PDF check.
 - [x] Title block top margin 4px (was 0) so the title is not flush against
       the letterhead. Structural CSS in the bundle; node test added (9/9).
+
+## Fix — "Printed on" line spilled onto its own page (2026-11-05)
+
+Seen in a real PDF: the line came after the table, so a table that filled
+the last page pushed it onto a new page holding only the letterhead and
+that line.
+
+- [x] `build_header()` now prints the line at the top of the title block
+      (right-aligned, class `akwad-report-printed-on`). `ns.footer()` and
+      its call in the General Ledger fixture are removed; the Print Style
+      theme rule is renamed to match. Fixture `modified` 2026-11-05 10:00.
+- [x] Node 10/10 (new test fails with the line removed from the header);
+      Python 15/15. Print Style patch re-run, migrate, build, cache clear
+      on `akw.localhost`.
+- [ ] Not done: live PDF check of a ledger that fills page 1.

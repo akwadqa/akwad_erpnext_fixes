@@ -13,9 +13,10 @@ function load(bundle, frappe_overrides = {}) {
 		utils: { escape_html: (s) => String(s) },
 		boot: {},
 		ui: {},
+		datetime: { str_to_user: () => "05-11-2026", get_datetime_as_string: () => "x" },
 		...frappe_overrides,
 	};
-	const sandbox = { frappe, __: (s) => s, $: () => {} };
+	const sandbox = { frappe, __: (s, args) => (args ? s.replace("{0}", args[0]) : s), $: () => {} };
 	vm.createContext(sandbox);
 	const file = path.join(__dirname, "../public/js", bundle);
 	vm.runInContext(fs.readFileSync(file, "utf8"), sandbox);
@@ -30,7 +31,7 @@ const CORE_ROWS =
 test("build_header renders a centred title block with company and period", () => {
 	const ns = load("report_print_style.bundle.js");
 	const html = ns.build_header({ title: "T", company: "Acme", period: "a to b" });
-	assert.match(html, /akwad-report-title"><h2>T<\/h2><div class="akwad-report-company">Acme<\/div><div class="akwad-report-period">a to b<\/div>/);
+	assert.match(html, /akwad-report-title"><div class="akwad-report-printed-on">Printed on 05-11-2026<\/div><h2>T<\/h2><div class="akwad-report-company">Acme<\/div><div class="akwad-report-period">a to b<\/div>/);
 	assert.doesNotMatch(html, /akwad-report-filters/);
 });
 
@@ -91,4 +92,10 @@ test("letterhead_footer is skipped when core already renders it (repeat_header_f
 test("title block keeps a small gap below the letterhead", () => {
 	const ns = load("report_print_style.bundle.js");
 	assert.match(ns.CSS, /\.akwad-report-title \{[^}]*margin: 4px 0 16px/);
+});
+
+test("Printed on line is part of the header, and no trailing footer helper remains", () => {
+	const ns = load("report_print_style.bundle.js");
+	assert.match(ns.build_header({ title: "T" }), /akwad-report-printed-on">Printed on 05-11-2026<\/div><h2>T/);
+	assert.strictEqual(ns.footer, undefined);
 });

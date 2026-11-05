@@ -78,7 +78,7 @@ def execute():
 			.akwad-report .akwad-cell-date,
 			.akwad-report .akwad-row-opening td,
 			.akwad-report .text-muted,
-			.akwad-report .akwad-report-footer,
+			.akwad-report .akwad-report-printed-on,
 			.akwad-report .akwad-letterhead-footer {
 				color: #646464;
 			}
