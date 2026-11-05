@@ -46,6 +46,7 @@ frappe.provide("frappe.akwad_report");
 		});
 		// The selected template's saved columns; null = no template selected.
 		this.saved_columns = null;
+		this.applied_template = null;
 		this.dialog = null;
 	}
 
@@ -121,6 +122,10 @@ frappe.provide("frappe.akwad_report");
 
 	TemplatePicker.prototype.apply_template = function (template_name) {
 		var picker = this;
+		// The Link fires change on blur too (e.g. when clicking a checkbox),
+		// which would re-apply the template over the user's edit.
+		if ((template_name || null) === picker.applied_template) return;
+		picker.applied_template = template_name || null;
 		if (!template_name) {
 			picker.saved_columns = null;
 			picker.set_selection([]);
@@ -156,11 +161,22 @@ frappe.provide("frappe.akwad_report");
 		return JSON.stringify(selected) !== JSON.stringify(saved);
 	};
 
+	// MultiCheck rebuilds its checkboxes from each option's `checked` flag
+	// whenever the dialog re-evaluates depends_on (e.g. right after a toggle),
+	// which would undo the user's change. Keep the flags in step with the selection.
+	TemplatePicker.prototype.sync_checked_options = function () {
+		var selected = this.dialog.get_field("extra_columns").selected_options || [];
+		this.column_options.forEach(function (option) {
+			option.checked = selected.indexOf(option.value) !== -1;
+		});
+	};
+
 	// One inline row under the checkboxes: a short note and, if permitted,
 	// the matching button. Update and Create are mutually exclusive (template
 	// selected or not), so they share the row instead of stacking.
 	TemplatePicker.prototype.refresh_actions = function () {
 		if (!this.dialog) return;
+		this.sync_checked_options();
 		var action = this.get_action();
 		var $wrapper = this.dialog.get_field("template_actions").$wrapper.empty().toggle(!!action);
 		if (!action) return;
